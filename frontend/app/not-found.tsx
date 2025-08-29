@@ -1,4 +1,6 @@
-export default () => (
+export default function NotFoundPage() {
+  return (
+
     <div className="flex items-center justify-center min-h-[100dvh]">
       <div className="max-w-md space-y-8 p-4 text-center">
     
@@ -11,4 +13,5 @@ export default () => (
         
       </div>
     </div>
-);
+  );
+}

@@ -1,7 +1,7 @@
 import * as React from "react"
 
-import { SearchForm } from "@/components/search-form"
-import { VersionSwitcher } from "@/components/version-switcher"
+// import { SearchForm } from "@/components/search-form"
+// import { VersionSwitcher } from "@/components/version-switcher"
 import Image from 'next/image';
 import {
   Sidebar,
@@ -23,13 +23,13 @@ const data = {
       url: "#",
       items: [
         {
-          icon: "plus.svg",
+          icon: "/plus.svg",
           title: "Crear orden",
           url: "/order/create",
           isActive: true
         },
         {
-          icon: "history.svg",
+          icon: "/history.svg",
           title: "Historial",
           url: "/order/history",
         },
