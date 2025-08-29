@@ -1,0 +1,1398 @@
+[
+    {
+        "firstLevelName": "Departamento De Ahuachapán",
+        "firstLevelDivision": "Departamento",
+        "firstLevelEntries": [
+            {
+                "secondLevelName": "Municipio De Ahuachapán Norte",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Atiquizaya",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De El Refugio",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Lorenzo",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Turín",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De Ahuachapán Centro",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Ahuachapán",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Apaneca",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Concepción De Ataco",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Tacuba",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De Ahuachapán Sur",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Guaymango",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Jujutla",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Francisco Menendez",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Pedro Puxtla",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "firstLevelName": "Departamento De San Salvador",
+        "firstLevelDivision": "Departamento",
+        "firstLevelEntries": [
+            {
+                "secondLevelName": "Municipio De San Salvador Norte",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Aguilares",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De El Paisnal",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Guazapa",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De San Salvador Oeste",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Apopa",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Nejapa",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De San Salvador Este",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Llopango",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Martín",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Soyapango",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Tonacatepeque",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De San Salvador Centro",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Ayutuxtepeque",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Mejicanos",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Salvador",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Cuscatancingo",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Ciudad Delgado",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De San Salvador Sur",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Panchimalco",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Rosario De Mora",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Marcos",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santo Tomás",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santiago Texacuangos",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "firstLevelName": "Departamento De La Libertad",
+        "firstLevelDivision": "Departamento",
+        "firstLevelEntries": [
+            {
+                "secondLevelName": "Municipio De La Libertad Norte",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Quezaltepeque",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Matías",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Pablo Tacachico",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De La Libertad Centro",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De San Juan Opico",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Ciudad Arce",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De La Libertad Oeste",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Colón",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Jayaque",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Sacacoyo",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Tepecoyo",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Talnique",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De La Libertad Este",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Antiguo Cuscatlán",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Huizucar",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Nuevo Cuscatlán",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San José Villanueva",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Zaragoza",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De La Libertad Costa",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Chiltuipán",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Jicalapa",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De La Libertad",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Tamanique",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Teotepeque",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De La Libertad Sur",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Comasagua",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santa Tecla",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "firstLevelName": "Departamento De Chalatenango",
+        "firstLevelDivision": "Departamento",
+        "firstLevelEntries": [
+            {
+                "secondLevelName": "Municipio De Chalatenango Norte",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De La Palma",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Citalá",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Ignacio",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De Chalatenango Centro",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Nueva Concepción",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Tejutla",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De La Reina",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Agua Caliente",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Dulce Nombre De María",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De El Paraíso",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Francisco Morazán",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Rafael",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santa Rita",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Fernando",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De Chalatenango Sur",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Chalatenango",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Arcatao",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Azacualpa",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Comalapa",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Concepción Quezaltepeque",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De El Carrizal",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De La Laguna",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Las Vueltas",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Nombre De Jesús",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Nueva Trinidad",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Ojos De Agua",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Potonico",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Antonio De La Cruz",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Antonio Los Ranchos",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Francisco Lempa",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Isidro Labrador",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San José Cancasque",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Miguel De Mercedes",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San José Las Flores",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Luis Del Carmen",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "firstLevelName": "Departamento De Cuscatlán",
+        "firstLevelDivision": "Departamento",
+        "firstLevelEntries": [
+            {
+                "secondLevelName": "Municipio De Cuscatlán Norte",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Suchitoto",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San José Guayabal",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Oratorio De Concepción",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Bartolomé Perulapán",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Pedro Perulapán",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De Cuscatlán Sur",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Cojutepeque",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Rafael Cedros",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Candelaria",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Monte San Juan",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De El Carmen",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Cristóbal",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santa Cruz Michapa",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Ramón",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De El Rosario",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santa Cruz Analquito",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Tenancingo",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "firstLevelName": "Departamento De Cabañas",
+        "firstLevelDivision": "Departamento",
+        "firstLevelEntries": [
+            {
+                "secondLevelName": "Municipio De Cabañas Este",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Sensuntepeque",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Victoria",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Dolores",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Guacotecti",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Isidro",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De Cabañas Oeste",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Llobasco",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Tejutepeque",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Jutiapa",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Cinquera",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "firstLevelName": "Departamento De La Paz",
+        "firstLevelDivision": "Departamento",
+        "firstLevelEntries": [
+            {
+                "secondLevelName": "Municipio De La Paz Oeste",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Cuyultitán",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Olocuilta",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Juan Talpa",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Luis Talpa",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Pedro Masahuat",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Tapalhuaca",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Francisco Chinameca",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De La Paz Centro",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De El Rosario",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Jerusalén",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Mercedes La Ceiba",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Paraíso De Osorio",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Antonio Masahuat",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Emigdio",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Juan Tepezontes",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Luis La Herradura",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Miguel Tepezontes",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Pedro Nonualco",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santa María Ostuma",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santiago Nonualco",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De La Paz Este",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De San Juan Nonualco",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Rafael Obrajuelo",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Zacatecoluca",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "firstLevelName": "Departamento De La Unión",
+        "firstLevelDivision": "Departamento",
+        "firstLevelEntries": [
+            {
+                "secondLevelName": "Municipio De La Unión Norte",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Anamorós",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Bolivar",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Concepción De Oriente",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De El Sauce",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Lislique",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Nueva Esparta",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Pasaquina",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Polorós",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San José La Fuente",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santa Rosa De Lima",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De La Unión Sur",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Conchagua",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De El Carmen",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Lntipucá",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De La Unión",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Meanguera Del Golfo",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Alejo",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Yayantique",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Yucuaiquín",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "firstLevelName": "Departamento De Usulután",
+        "firstLevelDivision": "Departamento",
+        "firstLevelEntries": [
+            {
+                "secondLevelName": "Municipio De Usulután Norte",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Santiago De María",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Alegría",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Berlín",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Mercedes Umana",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Jucuapa",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De El Triunfo",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Estanzuelas",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Buenaventura",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Nueva Granada",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De Usulután Este",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Usulután",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Jucuarán",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Dionisio",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Concepción Batres",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santa María",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Ozatlán",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Tecapán",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santa Elena",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De California",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Ereguayquín",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De Usulután Oeste",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Jiquilisco",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Puerto El Triunfo",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Agustín",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Francisco Javier",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "firstLevelName": "Departamento De Sonsonate",
+        "firstLevelDivision": "Departamento",
+        "firstLevelEntries": [
+            {
+                "secondLevelName": "Municipio De Sonsonate Norte",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Juayúa",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Nahuizalco",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Salcoatitán",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santa Catarina Masahuat",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De Sonsonate Centro",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Sonsonate",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Sonzacate",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Nahulingo",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Antonio Del Monte",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santo Domingo De Guzmán",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De Sonsonate Este",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Lzalco",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Armenia",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Caluco",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Julián",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Cuisnahuat",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santa Isabel Lshuatán",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De Sonsonate Oeste",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Acajutla",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "firstLevelName": "Departamento De Santa Ana",
+        "firstLevelDivision": "Departamento",
+        "firstLevelEntries": [
+            {
+                "secondLevelName": "Municipio De Santa Ana Norte",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Masahuat",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Metapán",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santa Rosa Guachipilín",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Texistepeque",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De Santa Ana Centro",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Santa Ana",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De Santa Ana Este",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Coatepeque",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De El Congo",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De Santa Ana Oeste",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Candelaria De La Frontera",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Chalchuapa",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De El Porvenir",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Antonio Pajonal",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Sebastián Salitrillo",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santiago De La Frontera",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "firstLevelName": "Departamento De San Vicente",
+        "firstLevelDivision": "Departamento",
+        "firstLevelEntries": [
+            {
+                "secondLevelName": "Municipio De San Vicente Norte",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Apastepeque",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santa Clara",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Ildefonso",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Esteban Catarina",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Sebastián",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Lorenzo",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Santo Domingo",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De San Vicente Sur",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De San Vicente",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Guadalupe",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Verapaz",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Tepetitán",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Tecoluca",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Cayetano Lstepeque",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "firstLevelName": "Departamento De San Miguel",
+        "firstLevelDivision": "Departamento",
+        "firstLevelEntries": [
+            {
+                "secondLevelName": "Municipio De San Miguel Norte",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Ciudad Barrios",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Sesori",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Nuevo Edén De San Juan",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Gerardo",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Luis De La Reina",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Carolina",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Antonio Del Mosco",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Chapeltique",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De San Miguel Centro",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De San Miguel",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Comacarán",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Uluazapa",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Moncagua",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Quelepa",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Chirilagua",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De San Miguel Oeste",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Chinameca",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Nueva Guadalupe",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Lolotique",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Jorge",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Rafael Oriente",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De El Tránsito",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "firstLevelName": "Departamento De Morazán",
+        "firstLevelDivision": "Departamento",
+        "firstLevelEntries": [
+            {
+                "secondLevelName": "Municipio De Morazán Norte",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Arambala",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Cacaopera",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Corinto",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De El Rosario",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Joateca",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Jocoaitique",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Meanguera",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Perquín",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Fernando",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Isidro",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Torola",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            },
+            {
+                "secondLevelName": "Municipio De Morazán Sur",
+                "secondLevelDivision": "Municipio",
+                "secondLevelEntries": [
+                    {
+                        "thirdLevelName": "Distrito De Chilanga",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Delicias De Concepción",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De El Divisadero",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Gualococti",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Guatajiagua",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Jocoro",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Lolotiquillo",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Osicala",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Carlos",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Francisco Gotera",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De San Simón",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Sensembra",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Sociedad",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Yamabal",
+                        "thirdLevelDivision": "Distrito"
+                    },
+                    {
+                        "thirdLevelName": "Distrito De Yoloaiquín",
+                        "thirdLevelDivision": "Distrito"
+                    }
+                ]
+            }
+        ]
+    }
+]
