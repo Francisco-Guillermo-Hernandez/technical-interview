@@ -1,11 +1,10 @@
 
 import { SignUpForm } from '@/components/sign-up-form';
 
-export default function SignUpPage({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+export default function SignUpPage() {
   return (
-    <SignUpForm {...props} />
+    <div>
+      <SignUpForm  />
+    </div>
   ); 
 }

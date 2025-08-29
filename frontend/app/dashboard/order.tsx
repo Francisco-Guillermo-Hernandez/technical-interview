@@ -43,10 +43,6 @@ export interface Order {
   packages: number;
 }
 
-// export function Dashboard({
-//   className,
-//   ...props
-// }: React.ComponentProps<"div">) {
 
 export function DeliveryOrderForm({
   className,
@@ -153,7 +149,7 @@ export function DeliveryOrderForm({
               <div className="bg-white rounded-lg border border-gray-200 p-8">
                 <h2 className="text-lg font-semibold text-gray-900 mb-6">Completa los datos</h2>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
                   {/* Pickup Address */}
                   <div className="lg:col-span-2">
                     <Label
@@ -171,7 +167,7 @@ export function DeliveryOrderForm({
                           pickupAddress: e.target.value,
                         })
                       }
-                      className="w-full"
+                      className="w-full h-12"
                     />
                   </div>
 
@@ -193,7 +189,7 @@ export function DeliveryOrderForm({
                             scheduledDate: e.target.value,
                           })
                         }
-                        className="w-full pr-10"
+                        className="w-full pr-10 h-12"
                       />
                       <Calendar className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                     </div>
@@ -213,7 +209,7 @@ export function DeliveryOrderForm({
                       onChange={(e) =>
                         setFormData({ ...formData, firstName: e.target.value })
                       }
-                      className="w-full"
+                      className="w-full h-12"
                     />
                   </div>
 
@@ -231,7 +227,7 @@ export function DeliveryOrderForm({
                       onChange={(e) =>
                         setFormData({ ...formData, lastName: e.target.value })
                       }
-                      className="w-full"
+                      className="w-full h-12"
                     />
                   </div>
 
@@ -250,7 +246,7 @@ export function DeliveryOrderForm({
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
                       }
-                      className="w-full"
+                      className="w-full h-12"
                     />
                   </div>
 
@@ -306,7 +302,7 @@ export function DeliveryOrderForm({
                           deliveryAddress: e.target.value,
                         })
                       }
-                      className="w-full"
+                      className="w-full h-12"
                     />
                   </div>
 
@@ -366,7 +362,7 @@ export function DeliveryOrderForm({
                           referencePoint: e.target.value,
                         })
                       }
-                      className="w-full"
+                      className="w-full h-12"
                     />
                   </div>
 
@@ -387,7 +383,7 @@ export function DeliveryOrderForm({
                           instructions: e.target.value,
                         })
                       }
-                      className="w-full"
+                      className="w-full h-12"
                     />
                   </div>
                 </div>
@@ -396,7 +392,7 @@ export function DeliveryOrderForm({
                 <div className="flex justify-end mt-8">
                   <Button
                     onClick={handleNextStep}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2"
+                    className=" text-white px-8 py-2 custom-btn-primary"
                   >
                     Siguiente
                     <span className="ml-2">→</span>

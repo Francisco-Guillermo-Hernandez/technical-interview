@@ -1,5 +1,6 @@
+'use client';
+
 // import Image from "next/image";
-// import { useState } from "react"
 // import LoginPage from "./login/page";
 import Page  from "./dashboard/page"
 
@@ -13,6 +14,8 @@ export default function Home() {
 
 //  }
 
+
+    // <LoginPage/>
 
   return (
 

@@ -1,5 +1,6 @@
 'use client';
 
+import { useFormState, useFormStatus } from "react-dom";
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -101,7 +102,7 @@ export function LoginForm({
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Digita tu contraseña"
-                  className={`h-12 ${errors.email ? 'border-red-500' : ''}`}
+                  className={`h-12 ${errors.password ? 'border-red-500' : ''}`}
                   required
                 />
                 {errors.password && (<p className="text-red-500 text-sm mt-1">{errors.password}</p> )}
@@ -110,8 +111,8 @@ export function LoginForm({
               <Button
                 type="submit"
                 // onClick={() => logIn(email, password)}
-                disabled={isLoading}
-                className="w-full h-12 mt-15 font-mona-sans font-bold"
+                // disabled={errors?.email != null || errors.password != null }
+                className="w-full custom-btn-primary"
               >
                 {isLoading ? (
                   <Spinner key="default" variant="default" />

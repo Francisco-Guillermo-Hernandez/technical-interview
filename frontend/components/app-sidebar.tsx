@@ -25,13 +25,13 @@ const data = {
         {
           icon: "/plus.svg",
           title: "Crear orden",
-          url: "/order/create",
+          url: "/dashboard/client/orders/",
           isActive: true
         },
         {
           icon: "/history.svg",
           title: "Historial",
-          url: "/order/history",
+          url: "/dashboard/client/history/",
         },
       ],
     },
