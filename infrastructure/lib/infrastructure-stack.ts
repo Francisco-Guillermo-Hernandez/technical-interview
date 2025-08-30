@@ -27,7 +27,7 @@ import * as secrets from 'aws-cdk-lib/aws-secretsmanager';
 import { env } from 'node:process';
 
 const frontendDistribution = '../../frontend/out/';
-const backendDistribution = '../../backend/dist/';
+const backendDistribution = '../../backend/production/lambda.zip';
 import { S3Origin } from 'aws-cdk-lib/aws-cloudfront-origins';
 
 export class InfrastructureStack extends cdk.Stack {
@@ -45,7 +45,7 @@ export class InfrastructureStack extends cdk.Stack {
       handler: 'lambda.handler',
       code: Code.fromAsset(join(__dirname, backendDistribution)),
       memorySize: 256,
-      timeout: cdk.Duration.minutes(1),
+      timeout: cdk.Duration.minutes(2),
       environment: {
         MODE: 'production',
         MONGODB_URI_DEV: env.MONGODB_URI_DEV ?? '',
@@ -71,6 +71,86 @@ export class InfrastructureStack extends cdk.Stack {
       },
     });
 
+    const advancedUrlRewriteFunction = new cloudfront.Function(
+      this,
+      'AdvancedUrlRewriteFunction',
+      {
+        functionName: 'nextjs-advanced-url-rewrite',
+        code: cloudfront.FunctionCode.fromInline(`
+    function handler(event) {
+      var request = event.request;
+      var uri = request.uri;
+      
+      // Don't rewrite requests for static assets
+      if (uri.match(/\\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|map)$/)) {
+        return request;
+      }
+      
+      // Don't rewrite API routes
+      if (uri.startsWith('/api/')) {
+        return request;
+      }
+      
+      // Handle Next.js _next static files
+      if (uri.startsWith('/_next/')) {
+        return request;
+      }
+      
+      // For root path
+      if (uri === '/') {
+        request.uri = '/index.html';
+        return request;
+      }
+      
+      // For paths ending with slash, append index.html
+      if (uri.endsWith('/')) {
+        request.uri = uri + 'index.html';
+        return request;
+      }
+      
+      // For paths without extension, try to append /index.html
+      if (!uri.includes('.')) {
+        request.uri = uri + '/index.html';
+        return request;
+      }
+      
+      return request;
+    }
+  `),
+        comment: 'Advanced URL rewrite function for Next.js static export',
+      }
+    );
+
+    const urlRewriteFunction = new cloudfront.Function(
+      this,
+      'UrlRewriteFunction',
+      {
+        functionName: 'nextjs-url-rewrite',
+        code: cloudfront.FunctionCode.fromInline(`
+        function handler(event) {
+          var request = event.request;
+          var uri = request.uri;
+          
+          // Check if the URI ends with a slash or has no file extension
+          if (uri.endsWith('/')) {
+            // For paths ending with /, append index.html
+            request.uri = uri + 'index.html';
+          } else if (!uri.includes('.') && !uri.endsWith('/')) {
+            // For paths without extension and not ending with /, append /index.html
+            request.uri = uri + '/index.html';
+          }
+          
+          return request;
+        }
+      `),
+        comment: 'URL rewrite function for Next.js static export',
+      }
+    );
+
+    //  const originAccessControl = new cloudfront.OriginAccessControl(this, 'OAC', {
+    //   description: 'OAC for Next.js static website',
+    // });
+
     const bucket = new Bucket(this, 'NextJsDistributionFrontendBucket', {
       enforceSSL: true,
       removalPolicy: cdk.RemovalPolicy.DESTROY, // Not for production
@@ -90,16 +170,78 @@ export class InfrastructureStack extends cdk.Stack {
           allowedMethods:
             cdk.aws_cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
           // cachedMethods: cdk.aws_cloudfront.CachedMethods.CACHE_NONE,
+          functionAssociations: [
+            {
+              function: urlRewriteFunction,
+              eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
+            },
+          ],
         },
         httpVersion: cdk.aws_cloudfront.HttpVersion.HTTP2,
-        defaultRootObject: 'index.html',
+        defaultRootObject: '/index.html',
         errorResponses: [
+          {
+            httpStatus: 403,
+            responseHttpStatus: 200,
+            responsePagePath: '/403/index.html',
+            ttl: cdk.Duration.minutes(1),
+          },
           {
             httpStatus: 404,
             responseHttpStatus: 200,
             responsePagePath: '/404/index.html',
           },
         ],
+        additionalBehaviors: {
+          '/auth': {
+            origin: new S3Origin(bucket),
+            viewerProtocolPolicy:
+              cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+            functionAssociations: [
+              {
+                function: new cloudfront.Function(this, 'RedirectAuth', {
+                  code: cloudfront.FunctionCode.fromInline(`
+            function handler(event) {
+              var request = event.request;
+              if (request.uri === "/auth") {
+                return {
+                  statusCode: 302,
+                  statusDescription: "Found",
+                  headers: { "location": { value: "/auth/login/" } }
+                };
+              }
+              return request;
+            }
+          `),
+                }),
+                eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
+              },
+            ],
+          },
+
+          //       '/dashboard/client/': {
+          //   origin: new S3Origin(bucket),
+          //   viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+          //   functionAssociations: [{
+          //     function: new cloudfront.Function(this, 'RedirectAuth', {
+          //       code: cloudfront.FunctionCode.fromInline(`
+          //         function handler(event) {
+          //           var request = event.request;
+          //           if (request.uri === "/dashboard/client") {
+          //             return {
+          //               statusCode: 302,
+          //               statusDescription: "Found",
+          //               headers: { "location": { value: "/dashboard/" } }
+          //             };
+          //           }
+          //           return request;
+          //         }
+          //       `),
+          //     }),
+          //     eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
+          //   }],
+          // },
+        },
       }
     );
 
