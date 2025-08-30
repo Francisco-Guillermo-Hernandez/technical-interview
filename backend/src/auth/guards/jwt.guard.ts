@@ -19,7 +19,8 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
       const authConfig = this.configService.get('authConfig') as JwtModuleOptions;
       const payload = await this.jwtService.verifyAsync(token,
         {
-          publicKey: authConfig.publicKey
+          publicKey: authConfig.publicKey,
+          algorithms: ['RS256']
         }
       );
       request['user'] = payload;

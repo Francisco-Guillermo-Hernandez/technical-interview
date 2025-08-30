@@ -8,14 +8,18 @@ import configuration from './environment';
 import databaseConfig from './database.config';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 // import { JwtModule, JwtModuleAsyncOptions, JwtModuleOptions } from '@nestjs/jwt';
+import { CatalogsModule } from './catalogs/catalogs.module';
 import authConfig from './auth.config';
+import emailerConfig from './emailer.config';
+import { EmailerModule } from './emailer/emailer.module';
+import { MailerModule, MailerOptions } from '@nestjs-modules/mailer';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       ignoreEnvFile: true,
       isGlobal: true,
-      load: [configuration, databaseConfig, authConfig]
+      load: [configuration, databaseConfig, authConfig, emailerConfig]
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -26,6 +30,15 @@ import authConfig from './auth.config';
     }),
     AuthModule,
     DeliveryModule,
+    CatalogsModule,
+    EmailerModule,
+    MailerModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        ...configService.get('emailerConfig') as MailerOptions
+      }),
+      inject: [ConfigService]
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

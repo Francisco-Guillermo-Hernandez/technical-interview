@@ -5,6 +5,7 @@
     "types": [
       "node"
     ],
+    "jsx": "react",
     "moduleResolution": "nodenext",
     "resolvePackageJsonExports": true,
     "esModuleInterop": true,

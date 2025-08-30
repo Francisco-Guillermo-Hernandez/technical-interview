@@ -6,7 +6,7 @@ export default registerAs('databaseConfig', () => ({
   url: encodeURI(env?.MONGODB_URI_DEV ?? ''),
   database: process.env.DB_NAME || 'technical_interview',
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
-  synchronize: true,
+  synchronize: false,
   logging: true,
   autoLoadEntities: true,
 }));

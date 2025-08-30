@@ -1,37 +1,68 @@
-import { Controller, Post, Body, UseGuards, Request, Get } from '@nestjs/common';
-import { JwtAuthGuard } from '../guards/jwt.guard';
-import { AuthService } from '../auth/auth.service';
-import { User } from '../../entities/User.entity';
-import { LoginDTO } from '../../dtos/login.dto';
+import {
+  Controller,
+  Post,
+  Body,
+  UseGuards,
+  Request,
+  Get,
+  HttpCode,
+  BadRequestException,
+} from "@nestjs/common";
+import { JwtAuthGuard } from "../guards/jwt.guard";
+import { AuthService } from "../auth/auth.service";
+import { LoginDTO } from "../../dtos/login.dto";
+import { UserDTO } from "../../dtos/user.dto";
+import { UserService } from "./user.service";
+import type { ActivateRequest } from "../../types/generic";
 
-@Controller('auth/user')
+@Controller("auth/user")
 export class UserController {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+  ) {}
 
-  @Post('register')
-  async register(@Body() userData: User) {
-    try {
-      const user = await this.authService.register(userData);
-      return { message: 'User registered successfully', user };
-    } catch (error) {
-      throw new Error(error);
-    }
+  @Post("register")
+  @HttpCode(200)
+  async register(@Body() userData: UserDTO) {
+    await this.authService.register(userData);
+    return { message: "User registered successfully" };
   }
 
-  @Post('login')
-  login(@Body() req: LoginDTO) {
+  @Post("login")
+  public login(@Body() req: LoginDTO) {
     return this.authService.login(req);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('profile')
-  getProfile(@Request() req): any {
-    return req.user;
+  @Get("profile")
+  public getProfile(@Request() req): any {
+    // const userRole = req.user.role;
+    return {
+      user: req.user,
+    };
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('hello')
-  greet() {
-    return 'Hello user'
+  @Get("hello")
+  public greet() {
+    return "Hello user";
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post("activate")
+  @HttpCode(200)
+  public async activateAccount(@Request() req: ActivateRequest) {
+    const result = await this.userService.activateAccount({
+      email: req.user.email,
+      otp: req.body.otp,
+      id: req.user.sub,
+    });
+
+    if (result) {
+      return { message: "El usuario ha sido activado correctamente" };
+    }
+
+    throw new BadRequestException("El codigo ya ha sido usado");
   }
 }
