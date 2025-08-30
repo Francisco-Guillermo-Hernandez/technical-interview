@@ -16,7 +16,7 @@ import { jwtVerify } from "jose";
 function base64ToUtf8(base64String: string): string {
   try {
 
-    let base64 = base64String.replace(/-/g, '+').replace(/_/g, '/');
+    const base64 = base64String.replace(/-/g, '+').replace(/_/g, '/');
     const binaryString = atob(base64);
     const utf8String = new TextDecoder('utf-8').decode(
       new Uint8Array(binaryString.split('').map(c => c.charCodeAt(0)))

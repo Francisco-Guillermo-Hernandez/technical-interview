@@ -40,12 +40,8 @@ import {
 const pageName = "Crea una orden";
 const breadcrumbTitle = "Crear orden";
 
-export default function OrderPage({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+export default function OrderPage() {
   return (
-    <>
     <DashboardLayout 
         pageName={pageName} 
         breadcrumbTitle={breadcrumbTitle}
@@ -56,6 +52,5 @@ export default function OrderPage({
     }>
         <DeliveryOrderForm/>
     </DashboardLayout>
-    </>
   );
 }

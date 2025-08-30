@@ -14,7 +14,7 @@ export type User = {
   area: string;
 }
 
-type CustomZodError = {
+export type CustomZodError = {
   name?: string;
   lastName?: string;
   gender?: string
@@ -66,6 +66,6 @@ export const validateSignUp = (data: Partial<SignUpFormData>) => {
       console.log(errors)
       return { isValid: false, errors };
     }
-    return { isValid: false, errors: { general: 'Validation failed' } };
+    return { isValid: false, errors: {  } };
   }
 };

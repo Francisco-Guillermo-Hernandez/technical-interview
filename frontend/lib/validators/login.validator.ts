@@ -7,9 +7,9 @@ export const loginSchema = z.object({
 
 export type LoginFormData = z.infer<typeof loginSchema>;
 
-type CustomZodError = {
-  email?: Array<string> | string;
-  password?: Array<string> | string;
+export type CustomZodError = {
+  email?:  string;
+  password?: string;
 }
 
 export const validateLogin = (data: Partial<LoginFormData>) => {
@@ -18,20 +18,18 @@ export const validateLogin = (data: Partial<LoginFormData>) => {
     return { isValid: true, errors: {} };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      const errors: CustomZodError = {};
+      
   
       const ff = error.flatten().fieldErrors as CustomZodError
-      if (ff?.email) {
-        errors.email = ff?.email?? '';
-      }
 
-      if (ff?.password) {
-        errors.password = ff?.password?? '';
-      }
+      const errors: CustomZodError = {
 
-      console.log(errors)
+        email: ff?.email,
+        password: ff?.password
+      };
+     
       return { isValid: false, errors };
     }
-    return { isValid: false, errors: { general: 'Validation failed' } };
+    return { isValid: false, errors: {}};
   }
 };

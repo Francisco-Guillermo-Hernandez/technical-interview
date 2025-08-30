@@ -4,12 +4,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import axios from 'axios';
 import { Spinner, type SpinnerProps } from '@/components/ui/spinner';
 import { Toaster, toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-import { validateLogin } from '@/lib/validators/login.validator';
+import { validateLogin, type CustomZodError } from '@/lib/validators/login.validator';
 import {
   loginAction,
   validateOTPAction,
@@ -32,12 +32,12 @@ export function LoginForm({
   const [isLoading, setIsLoading] = useState(false);
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [errors, setErrors] = useState({
+  const [errors, setErrors] = useState<CustomZodError>({
     email: '',
     password: '',
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { isValid, errors } = validateLogin({ email, password });

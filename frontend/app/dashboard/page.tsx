@@ -3,12 +3,8 @@ import DashboardLayout from './dashboard-template'
 const pageName = "Bienvenid@";
 const breadcrumbTitle = "";
 
-export default function WelcomeDashboardPage({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+export default function WelcomeDashboardPage() {
   return (
-    <>
     <DashboardLayout 
     pageName={pageName} 
     subText={<></>}
@@ -19,6 +15,5 @@ export default function WelcomeDashboardPage({
         Bienvenido 
       </div>
     </DashboardLayout>
-    </>  
   )
 }

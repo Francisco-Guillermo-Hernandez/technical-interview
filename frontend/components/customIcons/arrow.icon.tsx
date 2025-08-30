@@ -1,6 +1,6 @@
 
 
-export default function ArrowRightIcon({ className, ...props }: React.ComponentProps<"li">) {
+export default function ArrowRightIcon({ className }: React.ComponentProps<"svg">) {
   return (
   <svg
     className={className}
