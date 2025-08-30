@@ -11,9 +11,10 @@ import { Toaster, toast } from 'sonner';
 import { ChevronLeft, Eye, EyeOff, Calendar as C } from 'lucide-react';
 import { signUpAction } from '@/controllers/auth/sign-up.controller';
 import { useRouter } from 'next/navigation';
-import { User } from '@/lib/validators/sign-up.validator';
+import { User, validateSignUp, type CustomZodError } from '@/lib/validators/sign-up.validator';
 import axios from 'axios';
 import { Calendar } from '@/components/ui/calendar';
+import { Spinner, type SpinnerProps } from '@/components/ui/spinner'
 
 import {
   Select,
@@ -48,10 +49,10 @@ export function SignUpForm({
   const [open, setOpen] = useState(false)
   const [date, setDate] = useState<Date>();
   const [month, setMonth] = useState<Date | undefined>(date);
-  const [currentStatus, setStatus] = useState('registered');
+  const [currentStatus, setStatus] = useState('register');
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState({
+  const [errors, setErrors] = useState<CustomZodError>({
     name: '',
     lastName: '',
     gender: '',
@@ -82,6 +83,12 @@ export function SignUpForm({
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const { isValid, errors } = validateSignUp(registerData)
+
+    setErrors(errors);
+
+    if (!isValid) return;
+
     try {
       setIsLoading(true);
       signUpAction(registerData)
@@ -101,10 +108,15 @@ export function SignUpForm({
         });
     } catch (error) {
       console.log(error);
-    } finally {
       setIsLoading(false);
+    } finally {
+      
     }
   };
+
+  const redirect = () => {
+    router.push('/auth/login/');
+  }
 
   return (
     <>
@@ -119,7 +131,7 @@ export function SignUpForm({
           >
             <div className="flex flex-col w-full md:w-full xl:max-w-md sm:w-full xs:w-full">
               <div className="flex text-left">
-                <button className="p-1 hover:bg-gray-200 rounded-full transition-colors">
+                <button onClick={redirect} className="p-1 hover:bg-gray-200 rounded-full transition-colors">
                   <ChevronLeft className="w-5  text-gray-600" />
                 </button>
 
@@ -147,6 +159,12 @@ export function SignUpForm({
                     className="w-full px-3 py-2 focus:outline-none focus:ring-2 h-12 bg-white"
                     required
                   />
+
+                  {errors.name && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.name}
+                      </p>
+                    )}
                 </div>
 
                 <div>
@@ -162,6 +180,12 @@ export function SignUpForm({
                     className="w-full px-3 py-2 h-12 bg-white"
                     required
                   />
+
+                  {errors.lastName && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.lastName}
+                      </p>
+                    )}
                 </div>
 
                 <div>
@@ -188,6 +212,8 @@ export function SignUpForm({
                       <SelectItem value="other">Prefiero no decir</SelectItem>
                     </SelectContent>
                   </Select>
+
+                 
                 </div>
 
                 <div>
@@ -201,7 +227,7 @@ export function SignUpForm({
                         data-empty={!date}
                         className="relative data-[empty=true]:text-muted-foreground bg-white h-12 w-full justify-between text-left font-normal">
                         {date ? (
-                          format(date, 'dd-MM-yyyy')
+                          format(date, 'yyyy-MM-dd')
                         ) : (
                           <span>Seleccionar</span>
                         )}
@@ -224,6 +250,12 @@ export function SignUpForm({
                       />
                     </PopoverContent>
                   </Popover>
+
+                    {errors.birthdate && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.birthdate}
+                      </p>
+                    )}
                 </div>
 
                 <div>
@@ -240,6 +272,12 @@ export function SignUpForm({
                     className="w-full px-3 py-2 h-12 bg-white"
                     required
                   />
+
+                  {errors.email && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.email}
+                      </p>
+                    )}
                 </div>
 
                 <div>
@@ -272,6 +310,11 @@ export function SignUpForm({
                       className=" flex-1 border-0 px-3 py-6 rounded-r-2xl focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
                   </div>
+                   {errors.phone && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.phone}
+                      </p>
+                    )}
                 </div>
 
                 <div>
@@ -301,6 +344,12 @@ export function SignUpForm({
                       )}
                     </button>
                   </div>
+
+                   {errors.password && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.password}
+                      </p>
+                    )}
                 </div>
 
                 <div>
@@ -330,13 +379,24 @@ export function SignUpForm({
                       )}
                     </button>
                   </div>
+                   {errors.repeatPassword && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.repeatPassword}
+                      </p>
+                    )}
                 </div>
+
+               
               </div>
               <Button
                 type="submit"
                 className="mt-12 w-full h-12 font-mona-sans font-bold"
               >
-                Siguiente
+                {isLoading ? (
+                                      <Spinner key="default" variant="default" />
+                                    ) : (
+                                      'Siguente'
+                                    )}
               </Button>
             </div>
             </> 

@@ -1,6 +1,5 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -54,6 +53,7 @@ export function LoginForm({
           toast('Bienvenido', { description: `Saludos ${data.user}` });
           if (data.isActive) {
             
+            setIsLoading(false);
             router.push('/dashboard');
           } else {
             toast('Tu cuenta esta inactiva ', { description: `Si aun no has activado tu cuenta aqui la podras activar.` });
@@ -69,6 +69,7 @@ export function LoginForm({
             console.log(error?.response?.status);
 
             if (error.response?.status == 401) {
+              setIsLoading(false);
               toast('Credenciales inválidas', {
                 description: 'Por favor ingrese las credenciales de nuevo',
               });
@@ -77,8 +78,9 @@ export function LoginForm({
         });
     } catch (error) {
       console.error('Login error:', error);
-    } finally {
       setIsLoading(false);
+    } finally {
+     
     }
   };
 
