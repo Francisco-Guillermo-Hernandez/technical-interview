@@ -146,6 +146,10 @@
   background-color: var(--primary);
   font-weight: 600;
 }
+.custom-icon {
+  width: 25px;
+  height: 25px;
+}
 
 @layer base {
   * {

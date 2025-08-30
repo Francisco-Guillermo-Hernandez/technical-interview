@@ -11,6 +11,7 @@ export type User = {
   phone: string;
   birthdate: string; 
   repeatPassword?: string;
+  area: string;
 }
 
 export const userSchema = z.object({

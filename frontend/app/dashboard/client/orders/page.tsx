@@ -37,7 +37,7 @@ import {
 } from "@/components/ui/table"
 
 
-const pageName = "Ordenes";
+const pageName = "Crea una orden";
 const breadcrumbTitle = "Crear orden";
 
 export default function OrderPage({

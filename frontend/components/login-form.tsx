@@ -1,6 +1,6 @@
 'use client';
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormState, useFormStatus } from 'react-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -11,13 +11,25 @@ import { Spinner, type SpinnerProps } from '@/components/ui/spinner';
 import { Toaster, toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { validateLogin } from '@/lib/validators/login.validator';
-import { loginAction } from '@/controllers/auth/login.controller';
+import {
+  loginAction,
+  validateOTPAction,
+} from '@/controllers/auth/login.controller';
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from '@/components/ui/input-otp';
+import { REGEXP_ONLY_DIGITS } from 'input-otp';
+import { LocalStorageUtils } from '@/hooks/localStorage';
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<'div'>) {
   const router = useRouter();
+  const [currentStatus, setStatus] = useState('login');
   const [isLoading, setIsLoading] = useState(false);
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -40,7 +52,17 @@ export function LoginForm({
         .then((data) => {
           console.log(data);
           toast('Bienvenido', { description: `Saludos ${data.user}` });
-          router.push('/dashboard');
+          if (data.isActive) {
+            
+            router.push('/dashboard');
+          } else {
+            toast('Tu cuenta esta inactiva ', { description: `Si aun no has activado tu cuenta aqui la podras activar.` });
+
+            
+            setTimeout(() => {
+              setStatus('activate');
+            }, 50);
+          }
         })
         .catch((error) => {
           if (axios.isAxiosError(error)) {
@@ -60,6 +82,27 @@ export function LoginForm({
     }
   };
 
+  const handleOTP = async (otp: string) => {
+    validateOTPAction(otp)
+      .then(() => {
+        toast('El usuario ha sido activado correctamente', {
+          description: ` Ya puedes hacer uso de la plataforma `,
+        });
+        LocalStorageUtils.clear();
+        setStatus('login');
+        setPassword('');
+        setEmail('');
+      })
+      .catch((error) => {
+        if (axios.isAxiosError(error)) {
+          if (error.response?.status == 400) {
+            toast('El codigo OTP ya ha sido usado', {
+              description: '',
+            });
+          }
+        }
+      });
+  };
 
   return (
     <>
@@ -70,66 +113,119 @@ export function LoginForm({
             className="p-6 md:p-8 flex items-center justify-center"
             onSubmit={handleSubmit}
           >
-            <div className="flex flex-col gap-6 w-full md:w-full xl:max-w-md sm:w-full xs:w-full">
-              <div className="flex flex-col text-left">
-                <h1 className="text-2xl font-bold font-mona-sans">
-                  Bienvenido
-                </h1>
-                <p className="text-muted-foreground text-balance font-mona-sans mt-3">
-                  Por favor ingresa tus credenciales
-                </p>
-              </div>
-              <div className="grid gap-3 mt-10">
-                <Label htmlFor="email">Correo electr&oacute;nico</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className={`h-12 ${errors.email ? 'border-red-500' : ''}`}
-                  placeholder="Digita tu correo"
-                  required
-                />
-                {errors.email && (<p className="text-red-500 text-sm mt-1">{errors.email}</p>)}
-              </div>
-              <div className="grid gap-3">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Contraseña</Label>
-                </div>
-                <Input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Digita tu contraseña"
-                  className={`h-12 ${errors.password ? 'border-red-500' : ''}`}
-                  required
-                />
-                {errors.password && (<p className="text-red-500 text-sm mt-1">{errors.password}</p> )}
-              </div>
+            {currentStatus === 'login' ? (
+              <>
+                <div className="flex flex-col gap-6 w-full md:w-full xl:max-w-md sm:w-full xs:w-full">
+                  <div className="flex flex-col text-left">
+                    <h1 className="text-2xl font-bold font-mona-sans">
+                      Bienvenido
+                    </h1>
+                    <p className="text-muted-foreground text-balance font-mona-sans mt-3">
+                      Por favor ingresa tus credenciales
+                    </p>
+                  </div>
+                  <div className="grid gap-3 mt-10">
+                    <Label htmlFor="email">Correo electr&oacute;nico</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className={`h-12 ${errors.email ? 'border-red-500' : ''}`}
+                      placeholder="Digita tu correo"
+                      required
+                    />
+                    {errors.email && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.email}
+                      </p>
+                    )}
+                  </div>
+                  <div className="grid gap-3">
+                    <div className="flex items-center">
+                      <Label htmlFor="password">Contraseña</Label>
+                    </div>
+                    <Input
+                      id="password"
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="Digita tu contraseña"
+                      className={`h-12 ${
+                        errors.password ? 'border-red-500' : ''
+                      }`}
+                      required
+                    />
+                    {errors.password && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.password}
+                      </p>
+                    )}
+                  </div>
 
-              <Button
-                type="submit"
-                // onClick={() => logIn(email, password)}
-                // disabled={errors?.email != null || errors.password != null }
-                className="w-full custom-btn-primary"
-              >
-                {isLoading ? (
-                  <Spinner key="default" variant="default" />
-                ) : (
-                  'Iniciar sesión'
-                )}
-              </Button>
-              <div className="text-center text-sm">
-                Necesitas una cuenta? &nbsp;
-                <a
-                  href="/auth/sign-up"
-                  className="hover:underline hover:underline-offset-4 font-bold font-mona-sans"
-                >
-                  Reg&iacute;strate aqu&iacute;
-                </a>
-              </div>
-            </div>
+                  <Button
+                    type="submit"
+                    // onClick={() => logIn(email, password)}
+                    // disabled={errors?.email != null || errors.password != null }
+                    className="w-full custom-btn-primary"
+                  >
+                    {isLoading ? (
+                      <Spinner key="default" variant="default" />
+                    ) : (
+                      'Iniciar sesión'
+                    )}
+                  </Button>
+                  <div className="text-center text-sm">
+                    Necesitas una cuenta? &nbsp;
+                    <a
+                      href="/auth/sign-up"
+                      className="hover:underline hover:underline-offset-4 font-bold font-mona-sans"
+                    >
+                      Reg&iacute;strate aqu&iacute;
+                    </a>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex flex-col gap-6 w-full md:w-full xl:max-w-md sm:w-full xs:w-full">
+                  <div className="flex flex-col text-left">
+                    <h1 className="text-2xl font-bold font-mona-sans">
+                      Activación de la cuenta
+                    </h1>
+                    <p className="text-muted-foreground text-balance font-mona-sans mt-3">
+                      Por favor ingresa el codigo OTP
+                    </p>
+                  </div>
+                  <div className="mt-12">
+                    <label className="block text-sm font-medium text-gray-700 mb-4">
+                      OTP
+                    </label>
+                    <InputOTP
+                      maxLength={6}
+                      pattern={REGEXP_ONLY_DIGITS}
+                      onComplete={handleOTP}
+                    >
+                      <InputOTPGroup>
+                        <InputOTPSlot index={0} />
+                        <InputOTPSlot index={1} />
+                        <InputOTPSlot index={2} />
+                      </InputOTPGroup>
+                      <InputOTPSeparator />
+                      <InputOTPGroup>
+                        <InputOTPSlot index={3} />
+                        <InputOTPSlot index={4} />
+                        <InputOTPSlot index={5} />
+                      </InputOTPGroup>
+                    </InputOTP>
+
+                    <small className="mt-4 text-gray-700">
+                      Revisa tu correo para obtener el código
+                    </small>
+                  </div>
+                </div>
+              </>
+            )}
           </form>
           <div className="bg-[#EDEDED] relative hidden md:block"></div>
         </CardContent>
