@@ -4,11 +4,6 @@ import { HandlebarsAdapter } from "@nestjs-modules/mailer/dist/adapters/handleba
 
 import { join } from "node:path";
 export default registerAs("emailerConfig", () => ({
-  // email_host: env.EMAIL_HOST ?? 'sandbox.smtp.mailtrap.io',
-  // email_port: Number(env.EMAIL_PORT ?? '465'),
-  // email_user: env.EMAIL_USER ?? '',
-  // email_pass: env.EMAIL_PASS ?? ''
-
   transport: {
     host: env.EMAIL_HOST ?? "sandbox.smtp.mailtrap.io",
     port: Number(env.EMAIL_PORT ?? "465"),

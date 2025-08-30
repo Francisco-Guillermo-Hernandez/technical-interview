@@ -53,7 +53,7 @@ export class UserService {
 
   public async activateAccount(activation: ActivateDTO): Promise<boolean> {
     const result = await this.usersRepository
-    .update({ email: activation.email, _id: getId(activation.id) }, { isActive: true });
+    .update({ email: activation.email, _id: getId(activation.id), otp: activation.otp }, { isActive: true });
     return (result?.affected ?? 0) > 0; 
   }
 

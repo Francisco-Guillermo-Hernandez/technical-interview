@@ -65,16 +65,16 @@ export class AuthService {
     if (existingUser) {
       throw new BadRequestException("This user cannot be created");
     }
-    const newUser = await this.usersService.create({...userData, isActive: false, otp });
-    await this.emailService.sendVerificationEmail(userData.email, otp, 'Usa este OTP para activar tu cuenta')
+    const newUser = await this.usersService.create({...userData, isActive: false, otp: otp.raw });
+    await this.emailService.sendVerificationEmail(userData.email, otp.formatted, 'Usa este OTP para activar tu cuenta')
 
     //@ts-ignore
     const { hashedPassword, ...result } = newUser;
     return result as Omit<User, "hashedPassword">;
   }
 
-  public generateOTP(): string {
+  public generateOTP() {
     const otp = Array.from({ length: 6 }, () => Math.floor(Math.random() * 10)).join('');
-    return `${otp.slice(0, 3)}-${otp.slice(3)}`;
+    return { raw: otp, formatted: `${otp.slice(0, 3)}-${otp.slice(3)}` };
   }
 }
