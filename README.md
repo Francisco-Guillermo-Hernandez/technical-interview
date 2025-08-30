@@ -1,9 +1,18 @@
-## crear certificados
+# Prueba tecnica para Boxful 
+
+
+
+## Backend
+El backend necesita un par de llaves una pública y una privada para firmar los JWT, 
+para que el backend pueda crear los JWT cuando un usuario inicia sesión hay que crear un directorio llamado certs y generarlos con SSL.
+
+
+### crear certificados
 
 Para configurar el backend se requiere de un par de certificados uno privado y el otro público
 estos son necesarios para firmar el JWT y entregarselo al usuario.
 
-### Backend
+
 
 ```bash 
 # Generate private key
@@ -56,9 +65,23 @@ En Window es necesario agregarlas a las variables de entorno
 
 
 
-### Frontend
+## Frontend
+Inicie instalando las dependencias con `PNPM` y luego inicie el servidor con `dev`:
 
 ```bash
-
+pnpm install
 pnpm dev
 ```
+
+
+## Infrastructure
+
+Se usa AWS para desplegar el proyecto, para ello se usan los siguientes servicios:
+
+1. S3
+
+2. Lambda
+
+3. Api Gateway
+
+4. CloudFront
