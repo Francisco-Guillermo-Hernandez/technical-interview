@@ -25,8 +25,54 @@ openssl rsa -in private.key -pubout -out public.key
 cat public.key | base64 -w 0
 
 cat private.key | base64 -w 0
+```
+
+## Rutas 
 
 ```
+# Registro
+POST http://localhost:5050/auth/user/register
+{
+  "name": "",
+  "lastName": "",
+  "gender": "male",
+  "email": "",
+  "password": "",
+  "phone": "",
+  "birthdate": ""
+}
+
+# Login
+POST http://localhost:5050/auth/user/login
+{
+  "email": "",
+  "password": ""
+}
+
+# Ordenes
+POST http://localhost:5050/delivery/orders
+{
+  "deliveryAddress": "",
+  "directions": "",
+  "guideMark": "",
+  "firstLevel": "",
+  "secondLevel": "",
+  "thirdLevel": "",
+  "packages": [
+    {
+      "length": 10,
+      "height": 5,
+      "width": 8,
+      "content": "Electronics",
+      "weight": 2.5
+    }
+  ]
+}
+
+
+
+```
+
 
 ### Variables de entorno
 El Backend require de las siguientes configurationes en las variables de ambiente:
