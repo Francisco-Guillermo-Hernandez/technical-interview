@@ -22,22 +22,25 @@ export class OrdersService {
   public async findOne(id: string): Promise<Order | null> {
     return await this.orderRepository.findOne({
       where: { _id: getId(id ?? '') },
-      relations: ['user', 'packages']
+      // relations: ['user', 'packages']
     });
   }
 
-  public async findAll(page: number = 1, limit: number = 5): Promise<OrderPaginator> {
+  public async findAll(page: number = 1, limit: number = 5, userId: string): Promise<OrderPaginator> {
     const actualLimit = Math.min(Math.max(limit, 1), 10);
     const actualPage = Math.max(page, 1);
     
     const skip = (actualPage - 1) * actualLimit;
     
     const [data, total] = await this.orderRepository.findAndCount({
-      relations: ['user', 'products'],
+      // relations: ['user', 'products'],
+       where: {
+        userId: userId
+      },
       skip,
       take: actualLimit,
       order: {
-        
+       createdAt: 'DESC'  
       }
     });
 

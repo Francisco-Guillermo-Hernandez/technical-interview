@@ -44,6 +44,9 @@ export class User {
   @Column({ type: "string" })
   otp: string;
 
+  @Column({ type: "string" })
+  countryCode: string;
+
   async hashPassword(): Promise<void> {
     if (this.hashedPassword) {
       const saltRounds = 10;

@@ -21,4 +21,7 @@ export class UserDTO {
 
   otp: string;
 
+  countryCode: string;
+
+
 }

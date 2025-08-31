@@ -7,7 +7,7 @@ async function bootstrap() {
     cors: true
   });
   app.enableCors({
-  origin: ['http://localhost:3000'],
+  origin: ['http://localhost:3000', 'http://localhost:8000', 'https://d33kj2zo1rszhb.cloudfront.net/'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Access-Control-Allow-Origin'],
   credentials: true,

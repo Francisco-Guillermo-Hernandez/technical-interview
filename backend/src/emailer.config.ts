@@ -1,6 +1,6 @@
 import { registerAs } from "@nestjs/config";
 import { env } from "node:process";
-import { HandlebarsAdapter } from "@nestjs-modules/mailer/dist/adapters/handlebars.adapter"; // Or PugAdapter/EjsAdapter
+// import { HandlebarsAdapter } from "@nestjs-modules/mailer/dist/adapters/handlebars.adapter"; // Or PugAdapter/EjsAdapter
 
 import { join } from "node:path";
 export default registerAs("emailerConfig", () => ({
@@ -18,7 +18,7 @@ export default registerAs("emailerConfig", () => ({
   },
   template: {
     dir: join(__dirname, "./emailer/templates/"),
-    adapter: new HandlebarsAdapter(),
+    // adapter: new HandlebarsAdapter(),
     options: {
       strict: true,
     },
