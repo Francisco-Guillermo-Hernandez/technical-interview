@@ -50,7 +50,7 @@ export function LoginForm({
       loginAction(email, password)
         .then((data) => {
           console.log(data);
-          toast('Bienvenido', { description: `Saludos ${data.user}` });
+          toast('Bienvenido', { description: `Saludos` });
           if (data.isActive) {
             
             setIsLoading(false);

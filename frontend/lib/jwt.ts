@@ -1,17 +1,14 @@
 import env from './env-config'
 import { jwtVerify } from "jose";
 
-// export const verifyToken = async (token: string) => {
-//   try {
-//     const certPem = base64ToUtf8(env.publicCert)
-//     const decoded = jwt.verify(token, certPem ?? '', { algorithms: ['RS256'] });
-
-//     console.log(decoded);
-//     return decoded;
-//   } catch (error: any) {
-//     console.error(error);
-//   }
-// };
+export type TokenPayload = {
+  email: string;
+  isActive: boolean;
+  role: string;
+  sub: string;
+  iat: number;
+  exp: number;
+}
 
 function base64ToUtf8(base64String: string): string {
   try {
@@ -29,7 +26,7 @@ function base64ToUtf8(base64String: string): string {
   }
 }
 
-export async function verifyToken(token: string) {
+export async function verifyToken(token: string): Promise<TokenPayload> {
   const certPem = base64ToUtf8(env.publicCert)
   
   // Convert PEM -> CryptoKey
@@ -41,7 +38,7 @@ export async function verifyToken(token: string) {
     ["verify"]
   );
 
-  const { payload } = await jwtVerify(token, publicKey, {
+  const { payload } = await jwtVerify<TokenPayload>(token, publicKey, {
     algorithms: ["RS256"],
   });
 

@@ -3,10 +3,20 @@
 import DashboardLayout from '@/app/dashboard/dashboard-template';
 import OrderWizard from '@/components/orders/order-wizard';
 
+import { useAuth } from '@/hooks/auth';
+import LoaderPage from '@/components/loader';
+import UnAuthorizedPage from '@/app/un-authorized/page';
+
 const pageName = 'Crea una orden';
 const breadcrumbTitle = 'Crear orden';
 
 export default function OrderPage() {
+  const { user, isAuthenticated, isLoading, error, logout, token } = useAuth('client');
+
+  if (isLoading) return <LoaderPage />;
+
+  if (!isAuthenticated) return <UnAuthorizedPage />;
+
   return (
     <DashboardLayout
       pageName={pageName}
@@ -20,7 +30,7 @@ export default function OrderPage() {
         </span>
       }
     >
-      <OrderWizard/>
+      <OrderWizard />
     </DashboardLayout>
   );
 }

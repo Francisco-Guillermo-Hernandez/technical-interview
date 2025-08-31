@@ -1,29 +1,18 @@
 'use client';
+import { useAuth } from '@/hooks/auth';
+import UnAuthorizedPage from '@/app/un-authorized/page';
 
-// import Image from "next/image";
-// import LoginPage from "./login/page";
-import Page  from "./dashboard/page"
+import Page  from "./dashboard/page";
 
 export default function Home() {
-//   const [isAuthenticated, setIsAuthenticated] = useState(false);
-//     const handleLogin = () => {
-//     setIsAuthenticated(true)
-//   }
+  const { user, isAuthenticated, isLoading, error, logout } = useAuth('client');
 
-//  if (!isAuthenticated) {
+  if (isLoading) return <div>Loading...</div>;
 
-//  }
+  if(isAuthenticated) return <UnAuthorizedPage/>
 
-
-    // <LoginPage/>
 
   return (
-
-    <>
-      <Page/>
-    </>
-    
-    // <LoginPage/>
-    
+    <Page/>
   );
 }
