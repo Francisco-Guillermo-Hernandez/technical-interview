@@ -40,6 +40,8 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 
+import { z } from 'zod';
+
 function formatDate(date: Date | undefined) {
   if (!date) {
     return '';
@@ -61,6 +63,21 @@ export type DeliveryRequest = {
   directions: string;
   instructions: string;
 };
+
+export const deliveryRequestSchema = z.object({
+  pickupAddress: z.string().min(1, ""),
+  deliveryDate: z.string().min(1, ""),
+  firstName: z.string().min(1, ""),
+  lastName: z.string().min(1, ""),
+  email: z.email(""),
+  phone: z.string().min(1, ""),
+  countryCode: z.string().min(1, ""),
+  deliveryAddress: z.string().min(1, ""),
+  firstLevel: z.string().min(1, ""),
+  secondLevel: z.string().min(1, ""),
+  directions: z.string().min(1, ""),
+  instructions: z.string().min(1, ""),
+});
 
 type DataType = {
   firstLevelName: string;
@@ -95,19 +112,7 @@ export default function CreateOrderPage({
   }, []);
 
   const [formData, setFormData] = useState<DeliveryRequest>({
-    pickupAddress: 'Colonia Las Magnolias, calle militar 1, San Salvador',
-    deliveryDate: '03/07/2025',
-    firstName: 'Gabriela Reneé',
-    lastName: 'Días López',
-    email: 'gabbydiaz@gmail.com',
-    phone: '7777 7777',
-    countryCode: '503',
-    deliveryAddress:
-      'Final 49 Av Sur y Bulevar Los Próceres, Smartcenter, Bodega #8, San Salvador',
-    firstLevel: 'Departamento De San Salvador',
-    secondLevel: 'Municipio De San Salvador Centro',
-    directions: 'Cerca de redondel Árbol de la Paz',
-    instructions: 'Llamar antes de entregar',
+    'pickupAddress': '', 'deliveryDate': '', 'firstName': '', 'lastName': '', 'email': '', 'phone': '', 'countryCode': '', 'deliveryAddress': '', 'firstLevel': '', 'secondLevel': '', 'directions': '', 'instructions': ''
   });
 
   const selectedFirst = data.find(
@@ -116,6 +121,15 @@ export default function CreateOrderPage({
 
   const handleNextStep = () => triggerNext(formData);
 
+
+    const isDeliveryRequestValid = () => {
+    try {
+      deliveryRequestSchema.parse(formData);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-8">
       <h2 className="text-lg font-semibold text-gray-900 mb-6">
@@ -134,6 +148,7 @@ export default function CreateOrderPage({
           <Input
             id="pickupAddress"
             value={formData.pickupAddress}
+            required={true}
             onChange={(e) =>
               setFormData({
                 ...formData,
@@ -167,6 +182,7 @@ export default function CreateOrderPage({
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0">
                 <Calendar
+                required={true}
                   mode="single"
                   selected={date}
                   onSelect={(e) => {
@@ -196,6 +212,7 @@ export default function CreateOrderPage({
             Nombres
           </Label>
           <Input
+            required={true}
             id="firstName"
             value={formData.firstName}
             onChange={(e) =>
@@ -214,6 +231,7 @@ export default function CreateOrderPage({
             Apellidos
           </Label>
           <Input
+          required={true}
             id="lastName"
             value={formData.lastName}
             onChange={(e) =>
@@ -232,6 +250,7 @@ export default function CreateOrderPage({
             Correo electrónico
           </Label>
           <Input
+          required={true}
             id="email"
             type="email"
             value={formData.email}
@@ -250,6 +269,7 @@ export default function CreateOrderPage({
           </label>
           <div className="flex items-center rounded-[8px] border border-input  h-12 focus-within:ring-2 focus-within:ring-ring">
             <Select
+            
               value={formData.countryCode}
               onValueChange={(value) =>
                 setFormData({ ...formData, countryCode: value })
@@ -267,6 +287,7 @@ export default function CreateOrderPage({
 
             <Input
               type="tel"
+              required={true}
               value={formData.phone}
               onChange={(e) =>
                 setFormData({ ...formData, phone: e.target.value })
@@ -287,6 +308,7 @@ export default function CreateOrderPage({
           </Label>
           <Input
             id="deliveryAddress"
+            required={true}
             value={formData.deliveryAddress}
             onChange={(e) =>
               setFormData({
@@ -372,6 +394,7 @@ export default function CreateOrderPage({
           <Input
             id="directions"
             value={formData.directions}
+            required={true}
             onChange={(e) =>
               setFormData({
                 ...formData,
@@ -393,6 +416,7 @@ export default function CreateOrderPage({
           <Input
             id="instructions"
             value={formData.instructions}
+            required={true}
             onChange={(e) =>
               setFormData({
                 ...formData,
@@ -408,6 +432,7 @@ export default function CreateOrderPage({
       <div className="flex justify-end mt-8">
         <Button
           onClick={handleNextStep}
+          disabled={!isDeliveryRequestValid()}
           className=" text-white px-1 py-2 custom-btn-primary"
         >
           <span className="px-3">Siguiente</span>{' '}

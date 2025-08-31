@@ -13,8 +13,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/',
-        destination: '/dashboard/',
+        source: '/dashboard',
+        destination: '/dashboard/user/',
         permanent: false,
       }
     ]

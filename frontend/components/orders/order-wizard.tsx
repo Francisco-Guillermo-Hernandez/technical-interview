@@ -5,7 +5,7 @@ import AddProducts, { type Product } from '@/components/orders/add-products';
 
 import { useState } from 'react';
 import axios from 'axios';
-
+import { useRouter } from 'next/navigation';
 import env from '@/lib/env-config';
 
 type Package = {
@@ -36,11 +36,12 @@ const createOrderService = async (
 };
 
 
-export default function orderWizardPage({
+export default function OrderWizardPage({
   token,
   className,
   ...props
 }: React.ComponentProps<'div'> & { token: string } ) {
+  const router = useRouter();
   const [currentStep, setCurrentStep] = useState<
     'crearOrden' | 'aggregarProductos'
   >('crearOrden');
@@ -75,6 +76,8 @@ export default function orderWizardPage({
 
       const result = await createOrderService(token, combinedData);
       console.log('Order created successfully:', result);
+
+      setTimeout(() => {router.push('/dashboard/client/orders/')}, 1000);
       
     } catch (error) {
       console.error('Error creating order:', error);
