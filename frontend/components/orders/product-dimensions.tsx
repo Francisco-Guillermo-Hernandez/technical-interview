@@ -57,7 +57,7 @@ const DimensionInputs: React.FC<DimensionInputsProps> = ({
     <div className="flex items-center gap-0">
       <div className="flex flex-col items-start w-[87px]">
         <label className="text-sm font-bold text-foreground mb-1 text-left">
-          length
+          Largo
         </label>
         <div className="flex items-center border-input-border-color rounded-l-lg bg-white p-[14px] border">
           <input
@@ -77,7 +77,7 @@ const DimensionInputs: React.FC<DimensionInputsProps> = ({
 
       <div className="flex flex-col items-start w-[87px]">
         <label className="text-sm font-bold text-foreground mb-1 text-left">
-          height
+          Alto
         </label>
         <div className="flex items-center border-input-border-color bg-white p-[14px] border">
           <input
@@ -97,7 +97,7 @@ const DimensionInputs: React.FC<DimensionInputsProps> = ({
 
       <div className="flex flex-col items-start w-[87px]">
         <label className="text-sm font-bold text-foreground mb-1 text-left">
-          width
+          Ancho
         </label>
         <div className="flex items-center bg-white border-input-border-color rounded-r-lg p-[14px] border">
           <input

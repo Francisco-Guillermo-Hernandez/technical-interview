@@ -13,6 +13,28 @@ import ArrowRightIcon from '@/components/customIcons/arrow.icon';
 import DeleteI from '@/components/customIcons/delete.icon';
 import Image from 'next/image';
 import ProductDimensions from '@/components/orders/product-dimensions';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+
+
+import { z } from 'zod';
+
+const productSchema = z.object({
+  length: z.string().min(1, "La longitud es requerida"),
+  height: z.string().min(1, "La altura es requerida"),
+  width: z.string().min(1, "El ancho es requerido"),
+  weight: z.string().min(1, "El peso es requerido"),
+  content: z.string().min(1, "El contenido es requerido"),
+});
+
 
 interface Product {
   id: string;
@@ -23,7 +45,14 @@ interface Product {
   content: string;
 }
 
-export default function OrderPage() {
+type TriggerOutputCallback = (products: Product[]) => void;
+type TriggerBack = () => void;
+
+export default function OrderPage({ triggerOutput, triggerBack }: { 
+  triggerOutput?: TriggerOutputCallback; 
+  triggerBack: TriggerBack;
+}) {
+  const [open, setOpen] = React.useState(false);
   const [products, setProducts] = React.useState<Array<Product>>([]);
   const [newProduct, setNewProduct] = React.useState({
     length: '',
@@ -34,6 +63,8 @@ export default function OrderPage() {
   });
 
   const addProduct = () => {
+    if (!isProductValid()) return;
+    
     const product: Product = {
       id: Date.now().toString(),
       ...newProduct,
@@ -67,7 +98,28 @@ export default function OrderPage() {
     });
   };
 
+  const isProductValid = () => {
+    try {
+      productSchema.parse(newProduct);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
+
+  const clearProducts = () => setProducts([]);
+  const handleTriggerOutput = () => {
+    if (triggerOutput) {
+      triggerOutput(products);
+    }
+    setOpen(false);
+    clearProducts();
+  }
+
+  const handleTriggerBack = () => triggerBack();
+
   return (
+    
     <div className="bg-white rounded-lg  border border-gray-200 p-8  ">
       <h2 className="text-lg font-semibold text-gray-900 mb-6">
         Agrega tus productos
@@ -118,17 +170,10 @@ export default function OrderPage() {
                 placeholder="iPhone 14 pro Max"
                 value={newProduct.content}
                 onChange={(e) => {
-
-                     console.log(e.target.value)
-
-
+                  console.log(e.target.value)
                   setNewProduct({ ...newProduct, content: e.target.value })
-
                   console.log(newProduct);
-                }
-
-                   
-                }
+                }}
               />
             </div>
           </div>
@@ -137,6 +182,7 @@ export default function OrderPage() {
               variant="outline"
               className="custom-btn-secondary "
               onClick={addProduct}
+              disabled={!isProductValid()}
             >
               Agregar{' '}
               <Image src={AddIcon} alt="package" width={24} height={24} />
@@ -201,22 +247,45 @@ export default function OrderPage() {
       </div>
       </div>
       <div className="flex justify-between mt-8">
-        <Button className="custom-btn-secondary border border-input-border-color ">
-          <Image src={ArrowLeft} alt="Regresar" width={24} height={24} />
+        <Button className="custom-btn-secondary border border-input-border-color " onClick={handleTriggerBack}>
+          <Image src={ArrowLeft} alt="Regresar" width={24} height={24}  />
           Regresar
         </Button>
         <Button
           variant="default"
           className=" text-white px-1 py-2 custom-btn-primary"
+          onClick={() => {
+            setOpen(true)
+          }}
+          disabled={products.length === 0}
         >
           <span className="px-3">Enviar</span>{' '}
           <ArrowRightIcon className="custom-icon" />
         </Button>
       </div>
 
-{/* <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
-   
-  </div> */}
+       
+      <Dialog open={open}>
+        <DialogContent onPointerDownOutside={handleTriggerOutput}>
+            <DialogHeader >
+            <DialogTitle>Sus productos han sido procesados</DialogTitle>
+            <DialogDescription>
+                <span>
+                    Espera a recibir el código de seguimiento.
+                </span>
+            </DialogDescription>
+            </DialogHeader>
+             <DialogFooter>
+            
+            <Button variant='secondary' type="button" onClick={() => { }} className='ml-4'>Registrar mas productos</Button>  
+            <DialogClose asChild>
+              
+              <Button type="button" onClick={handleTriggerOutput}>Deacuerdo</Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+       
+      </Dialog>
     </div>
   );
 }

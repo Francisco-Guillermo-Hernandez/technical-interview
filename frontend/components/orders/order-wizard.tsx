@@ -1,5 +1,8 @@
 'use client';
 
+import CreateOrder from '@/components/orders/create-order';
+import AddProducts from '@/components/orders/add-products';
+
 import { useState } from 'react';
 
 export interface Product {
@@ -21,9 +24,7 @@ export interface Order {
   packages: number;
 }
 
-import AddProducts from '@/components/orders/add-products';
-
-export function DeliveryOrderForm({
+export default function orderWizardPage({
   className,
   ...props
 }: React.ComponentProps<'div'>) {
@@ -31,13 +32,18 @@ export function DeliveryOrderForm({
     'crearOrden' | 'aggregarProductos'
   >('crearOrden');
 
-  const handleWizard = () => setCurrentStep('aggregarProductos');
-
   return (
     <div {...props}>
       {currentStep === 'crearOrden' ? (
         // Step 1: Customer Information Form
-        <></>
+        <>
+          <CreateOrder
+            triggerNext={(data) => {
+              console.log(data);
+              setCurrentStep('aggregarProductos');
+            }}
+          />
+        </>
       ) : (
         // Step 2: Add Products
         <>
@@ -47,6 +53,7 @@ export function DeliveryOrderForm({
             }}
             triggerBack={() => {
               console.log('regresando');
+              setCurrentStep('crearOrden');
             }}
           />
         </>
