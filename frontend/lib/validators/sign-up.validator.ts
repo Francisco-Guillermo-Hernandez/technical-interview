@@ -11,7 +11,7 @@ export type User = {
   phone: string;
   birthdate: string; 
   repeatPassword?: string;
-  area: string;
+  countryCode: string;
 }
 
 export type CustomZodError = {
@@ -23,7 +23,7 @@ export type CustomZodError = {
   phone?: string;
   birthdate?: string; 
   repeatPassword?: string;
-  area?: string;
+  countryCode?: string;
 }
 
 export const signUpSchema = z.object({

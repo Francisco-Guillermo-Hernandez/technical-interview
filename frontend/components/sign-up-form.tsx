@@ -46,7 +46,7 @@ export function SignUpForm({
   ...props
 }: React.ComponentProps<'div'>) {
 
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const [date, setDate] = useState<Date>();
   const [month, setMonth] = useState<Date | undefined>(date);
   const [currentStatus, setStatus] = useState('register');
@@ -66,6 +66,7 @@ export function SignUpForm({
   const updateRegisterData = (field: string, value: string) => {
     setRegisterData((prev) => ({ ...prev, [field]: value }));
   };
+  const [disabled, setDisabled] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
   const [registerData, setRegisterData] = useState<User>({
@@ -77,7 +78,7 @@ export function SignUpForm({
     phone: '',
     password: '',
     repeatPassword: '',
-    area: '503',
+    countryCode: '503',
   });
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -96,6 +97,7 @@ export function SignUpForm({
           toast('Tu registro se ha completado correctamente', {
             description: ` recibiras un correo de confirmación `,
           });
+          setTimeout(() => redirect(), 1000);
         })
         .catch((error) => {
           if (axios.isAxiosError(error)) {
@@ -106,6 +108,7 @@ export function SignUpForm({
             }
           }
         });
+        setIsLoading(false);
     } catch (error) {
       console.log(error);
       setIsLoading(false);
@@ -131,7 +134,7 @@ export function SignUpForm({
           >
             <div className="flex flex-col w-full md:w-full xl:max-w-md sm:w-full xs:w-full">
               <div className="flex text-left">
-                <button onClick={redirect} className="p-1 hover:bg-gray-200 rounded-full transition-colors">
+                <button type='button' onClick={redirect} className="p-1 hover:bg-gray-200 rounded-full transition-colors">
                   <ChevronLeft className="w-5  text-gray-600" />
                 </button>
 
@@ -286,9 +289,9 @@ export function SignUpForm({
                   </label>
                   <div className="flex items-center rounded-[8px] border border-input  h-12 focus-within:ring-2 focus-within:ring-ring">
                     <Select 
-                     value={registerData.area}
+                     value={registerData.countryCode}
                     onValueChange={(value) =>
-                      updateRegisterData('area', value)
+                      updateRegisterData('countryCode', value)
                     }>
                       <SelectTrigger className="w-[78px] px-3 py-6 border-r border-input rounded-[8px] focus:ring-0 focus:ring-offset-0 h-12">
                         <SelectValue placeholder="Code" className="" />
@@ -390,6 +393,7 @@ export function SignUpForm({
               </div>
               <Button
                 type="submit"
+                disabled={disabled}
                 className="mt-12 w-full h-12 font-mona-sans font-bold"
               >
                 {isLoading ? (

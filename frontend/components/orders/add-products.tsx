@@ -36,7 +36,7 @@ const productSchema = z.object({
 });
 
 
-interface Product {
+export interface Product {
   id: string;
   length: string;
   height: string;

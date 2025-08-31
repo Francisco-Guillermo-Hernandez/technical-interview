@@ -6,9 +6,10 @@ import { verifyToken, type TokenPayload } from '@/lib/jwt';
 
 import { useRouter } from 'next/navigation';
 
+
 // Define the authentication context type
 interface AuthContextType {
-  token: string | null;
+  token: string;
   user: TokenPayload | null;
   isAuthenticated: boolean;
   isLoading: boolean;
@@ -18,7 +19,7 @@ interface AuthContextType {
 
 //  Hook for authentication
 export function useAuth(requiredRole?: string): AuthContextType {
-  const [token, setToken] = useState<string | null>(null);
+  const [token, setToken] = useState<string>('');
   const [user, setUser] = useState<TokenPayload | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);

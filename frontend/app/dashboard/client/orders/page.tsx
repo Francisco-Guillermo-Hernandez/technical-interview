@@ -30,7 +30,7 @@ export default function OrderPage() {
         </span>
       }
     >
-      <OrderWizard />
+      <OrderWizard token={token} />
     </DashboardLayout>
   );
 }

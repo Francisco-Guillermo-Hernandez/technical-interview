@@ -10,8 +10,8 @@ type SignResponse = {
 
 export const signUpAction = async (user: User) => {
   try {
-    const { area, phone, repeatPassword, ...remaining } = user;
-    return await axios.post<SignResponse>(env.apiUrl.concat('auth/user/register'), { ...remaining, phone: area.concat(phone)  });
+    const { repeatPassword, ...remaining } = user;
+    return await axios.post<SignResponse>(env.apiUrl.concat('auth/user/register'), { ...remaining });
   } catch (error) {
     throw error;
   }

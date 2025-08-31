@@ -13,7 +13,6 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import {
-  Calendar,
   Plus,
   Clock,
   ArrowLeft,
@@ -29,18 +28,37 @@ import env from '@/lib/env-config';
 import { useEffect } from 'react';
 import axios from 'axios';
 
+import { format } from 'date-fns';
+import { Calendar as CalendarIcon, Mail } from 'lucide-react';
+import { Calendar } from '@/components/ui/calendar';
+import { Spinner, type SpinnerProps } from '@/components/ui/spinner';
+
+import { cn } from '@/lib/utils';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+
+function formatDate(date: Date | undefined) {
+  if (!date) {
+    return '';
+  }
+  return date.toISOString().split('T')[0]; // iso format
+}
+
 export type DeliveryRequest = {
   pickupAddress: string;
-  scheduledDate: string;
+  deliveryDate: string;
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
   countryCode: string;
   deliveryAddress: string;
-  department: string;
-  municipality: string;
-  referencePoint: string;
+  firstLevel: string;
+  secondLevel: string;
+  directions: string;
   instructions: string;
 };
 
@@ -64,10 +82,10 @@ export default function CreateOrderPage({
 }: {
   triggerNext: TriggerOutputCallback;
 }) {
+  const [open, setOpen] = useState(false);
+  const [date, setDate] = useState<Date>();
+  const [month, setMonth] = useState<Date | undefined>(date);
   const [data, setData] = useState<DataType[]>([]);
-  const [firstValue, setFirstValue] = useState<string>('');
-  const [secondValue, setSecondValue] = useState<string>('');
-
   useEffect(() => {
     axios
       .get<DataType[]>(env.apiUrl.concat('catalogs/divisions/'))
@@ -76,11 +94,9 @@ export default function CreateOrderPage({
       });
   }, []);
 
-  const selectedFirst = data.find((d) => d.firstLevelName === firstValue);
-
   const [formData, setFormData] = useState<DeliveryRequest>({
     pickupAddress: 'Colonia Las Magnolias, calle militar 1, San Salvador',
-    scheduledDate: '03/07/2025',
+    deliveryDate: '03/07/2025',
     firstName: 'Gabriela Reneé',
     lastName: 'Días López',
     email: 'gabbydiaz@gmail.com',
@@ -88,11 +104,15 @@ export default function CreateOrderPage({
     countryCode: '503',
     deliveryAddress:
       'Final 49 Av Sur y Bulevar Los Próceres, Smartcenter, Bodega #8, San Salvador',
-    department: 'San Salvador',
-    municipality: 'San Salvador',
-    referencePoint: 'Cerca de redondel Árbol de la Paz',
+    firstLevel: 'Departamento De San Salvador',
+    secondLevel: 'Municipio De San Salvador Centro',
+    directions: 'Cerca de redondel Árbol de la Paz',
     instructions: 'Llamar antes de entregar',
   });
+
+  const selectedFirst = data.find(
+    (d) => d.firstLevelName === formData.firstLevel
+  );
 
   const handleNextStep = () => triggerNext(formData);
 
@@ -127,24 +147,43 @@ export default function CreateOrderPage({
         {/* Scheduled Date */}
         <div>
           <Label
-            htmlFor="scheduledDate"
+            htmlFor="deliveryDate"
             className="text-sm font-medium text-gray-900 mb-2 block"
           >
             Fecha programada
           </Label>
           <div className="relative">
-            <Input
-              id="scheduledDate"
-              value={formData.scheduledDate}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  scheduledDate: e.target.value,
-                })
-              }
-              className="w-full pr-10 h-12"
-            />
-            <Calendar className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Popover open={open} onOpenChange={setOpen}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  data-empty={!date}
+                  className="relative data-[empty=true]:text-muted-foreground bg-white h-12 w-full justify-between text-left font-normal"
+                >
+                  {date ? format(date, 'yyyy-MM-dd') : <span>Seleccionar</span>}
+
+                  <CalendarIcon className="size-3.5 justify-end text-gray-400 hover:text-gray-600" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar
+                  mode="single"
+                  selected={date}
+                  onSelect={(e) => {
+                    setDate(e);
+
+                    setFormData({
+                      ...formData,
+                      deliveryDate: formatDate(e),
+                    });
+                    setOpen(false);
+                  }}
+                  captionLayout="dropdown"
+                  month={month}
+                  onMonthChange={setMonth}
+                />
+              </PopoverContent>
+            </Popover>
           </div>
         </div>
 
@@ -259,14 +298,22 @@ export default function CreateOrderPage({
           />
         </div>
 
-        {/* Department */}
+        {/* firstLevel */}
 
         <div>
           <label className="block text-sm font-medium text-gray-900 mb-2">
             Departamento
           </label>
 
-          <Select onValueChange={setFirstValue} value={firstValue}>
+          <Select
+            onValueChange={(value) => {
+              setFormData({
+                ...formData,
+                firstLevel: value,
+              });
+            }}
+            value={formData.firstLevel}
+          >
             <SelectTrigger className="py-6 w-full">
               <SelectValue placeholder="Selecciona un departamento" />
             </SelectTrigger>
@@ -289,9 +336,14 @@ export default function CreateOrderPage({
           </label>
 
           <Select
-            onValueChange={setSecondValue}
-            value={secondValue}
-            disabled={!firstValue}
+            onValueChange={(value) => {
+              setFormData({
+                ...formData,
+                secondLevel: value,
+              });
+            }}
+            value={formData.secondLevel}
+            disabled={!formData.firstLevel}
           >
             <SelectTrigger className="py-6 w-full">
               <SelectValue placeholder="Selecciona un municipio" />
@@ -312,25 +364,25 @@ export default function CreateOrderPage({
         {/* Reference Point */}
         <div>
           <Label
-            htmlFor="referencePoint"
+            htmlFor="directions"
             className="text-sm font-medium text-gray-900 mb-2 block"
           >
             Punto de referencia
           </Label>
           <Input
-            id="referencePoint"
-            value={formData.referencePoint}
+            id="directions"
+            value={formData.directions}
             onChange={(e) =>
               setFormData({
                 ...formData,
-                referencePoint: e.target.value,
+                directions: e.target.value,
               })
             }
             className="w-full h-12"
           />
         </div>
 
-        {/* Instructions */}
+        {/* instructions */}
         <div className="lg:col-span-3">
           <Label
             htmlFor="instructions"
