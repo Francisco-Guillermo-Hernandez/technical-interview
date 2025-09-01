@@ -43,7 +43,11 @@ import env from '@/lib/env-config';
 import { type DeliveryRequest } from '@/components/orders/create-order';
 import { type Product } from '@/components/orders/add-products';
 
+
+
 import axios from 'axios';
+
+import FiltersPage from '@/app/dashboard/client/history/filters';
 
 
 export type Payment = {
@@ -246,7 +250,11 @@ const columns: ColumnDef<Order>[] = [
       columnVisibility,
       rowSelection,
     },
-  })
+  });
+
+  const downloadReport = () => {
+
+  }
 
   return (
     <div className="w-full">
@@ -261,6 +269,9 @@ const columns: ColumnDef<Order>[] = [
         />
         
       </div> */}
+      <FiltersPage 
+      downloadOrdersCallback={downloadReport} 
+      applyFiltersCallBack={(filter) => {}} />
       <div className="overflow-hidden rounded-md border">
         <Table>
           <TableHeader className="bg-[#EDEDED] text-[#3B3939]">
