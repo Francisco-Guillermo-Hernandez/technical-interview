@@ -18,13 +18,10 @@ const breadcrumbTitle = 'Mis envios';
 export default function HistoryPage({
   className,
   ...props
-}: React.ComponentProps<'div'>) {
+}: React.ComponentProps<'div'>) { 
 
+  const { user, isAuthenticated, isLoading, error, logout, token } = useAuth('client');
 
-  const { user, isAuthenticated, isLoading, error, logout, token } =
-    useAuth('client');
-
-  
   if (isLoading) return <LoaderPage />;
 
   if (!isAuthenticated) return <UnAuthorizedPage />;
