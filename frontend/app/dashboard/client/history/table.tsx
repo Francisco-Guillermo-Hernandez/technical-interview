@@ -43,25 +43,12 @@ import env from '@/lib/env-config';
 import { type DeliveryRequest } from '@/components/orders/create-order';
 import { type Product } from '@/components/orders/add-products';
 
-
-
 import axios from 'axios';
-
-import FiltersPage from '@/app/dashboard/client/history/filters';
-
-
-export type Payment = {
-  _id: string
-  amount: number;
-  lastName: string;
-  firstName: string;
-  secondLevel: string;
-  firstLevel: string;
-  status: "pending" | "processing" | "success" | "failed"
-  email: string
-}
-
-
+import useDownloadOrders from '@/hooks/download-report';
+import FiltersPage, { type Filter } from '@/app/dashboard/client/history/filters';
+import { DateRange } from 'react-day-picker'
+import { PaginationState, OnChangeFn } from '@tanstack/react-table';
+import { format } from 'date-fns';
 
 type Package = {
   length: number;
@@ -73,7 +60,10 @@ type Package = {
 
 type KeysToOmit = 'countryCode';
 type Order = Omit<DeliveryRequest, KeysToOmit> & {
+  _id: string;
   packages: Array<Package>;
+  createdAt: string;
+  thirdLevel: string | null;
 };
 
 interface OrderPaginator {
@@ -85,34 +75,45 @@ interface OrderPaginator {
   hasPrev: boolean;
 }
 
+type PaginatorRequest = {
+  page: number;
+  limit: number;
+}
+
+
+const formatDate = (date: Date) => format(date, 'yyyy-MM-dd');
+
 export default function HistoryPage({ token }: { token: string }) {
 
-  const [orders, setOrders] = React.useState<Order[]>([]);
+  const [orders, setOrders] = React.useState<OrderPaginator>();
   const [loading, setLoading] = React.useState<boolean>(true);
   const [httpError, setError] = React.useState<string | null>(null);
+  const {error, downloadOrdersAsXLSX } = useDownloadOrders();
 
   const fetchOrders = async (
-    token: string,
-    page: number = 1,
-    limit: number = 5
+    token: string, 
+    paginator: PaginatorRequest = { page: 0, limit: 5 }, 
+    filter?: Filter
   ) => {
     try {
       setLoading(true);
       setError(null);
 
-      // Replace with your actual API endpoint
+      const { from, to } = filter?.range || {};
+      const filtersTemplate = (from && to) ? 
+      `&from=${formatDate(from)}&to=${formatDate(to)}` : '';
+      
       const response = await axios.get<OrderPaginator>(
-        `${env.apiUrl}delivery/orders`,
+        `${env.apiUrl}delivery/orders?page=${paginator.page + 1}${filtersTemplate}`,
         {
           headers: {
             'Content-Type': 'application/json',
-  
             Authorization: `Bearer ${token}`,
           },
         }
       );
 
-      setOrders(response.data.orders);
+      setOrders(response.data);
     } catch (err) {
       console.error('Error fetching orders:', err);
       setError('Failed to fetch orders');
@@ -130,19 +131,23 @@ export default function HistoryPage({ token }: { token: string }) {
    fetchOrders(token);  
   }, [token]);
 
-  const handlePageChange = (page: number) => {
-    fetchOrders(token, page, 5);
+  const [pagination, setPagination] = React.useState({
+  pageIndex: 0,
+  pageSize: 5,
+});
+
+  const handlePageChange = (value: number) => {
+    fetchOrders(token, {
+      limit: 5, 
+      page: pagination.pageIndex + value
+    });
   };
 
-
-   const [sorting, setSorting] = React.useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  )
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})
 
-console.log(orders)
 
 const columns: ColumnDef<Order>[] = [
   {
@@ -233,9 +238,11 @@ const columns: ColumnDef<Order>[] = [
   },
 ]
 
+
   const table = useReactTable({
-    data: orders,
+    data: orders?.orders ?? [], 
     columns,
+    pageCount: orders?.totalPages,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -249,11 +256,21 @@ const columns: ColumnDef<Order>[] = [
       columnFilters,
       columnVisibility,
       rowSelection,
+      pagination: pagination
     },
+    onPaginationChange: setPagination,
+    manualPagination: true,
+    rowCount: orders?.total
   });
 
-  const downloadReport = () => {
+  const downloadReport = () => downloadOrdersAsXLSX(orders?.orders ?? [], 'my-orders.xlsx');
 
+  const applyFilters = (filter: Filter) => {
+    console.log('Hiiiii')
+    fetchOrders(token, {
+      limit: 5, 
+      page: pagination.pageIndex
+    }, filter);
   }
 
   return (
@@ -271,7 +288,7 @@ const columns: ColumnDef<Order>[] = [
       </div> */}
       <FiltersPage 
       downloadOrdersCallback={downloadReport} 
-      applyFiltersCallBack={(filter) => {}} />
+      applyFiltersCallBack={applyFilters} />
       <div className="overflow-hidden rounded-md border">
         <Table>
           <TableHeader className="bg-[#EDEDED] text-[#3B3939]">
@@ -322,7 +339,7 @@ const columns: ColumnDef<Order>[] = [
           </TableBody>
         </Table>
       </div>
-      {/* <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="flex items-center justify-end space-x-2 py-4">
         <div className="text-muted-foreground flex-1 text-sm">
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.
@@ -331,7 +348,11 @@ const columns: ColumnDef<Order>[] = [
           <Button
             variant="outline"
             size="sm"
-            onClick={() => table.previousPage()}
+            className="bg-white"
+            onClick={() => {
+              table.previousPage()
+              handlePageChange(-1)
+            }}
             disabled={!table.getCanPreviousPage()}
           >
             Previous
@@ -339,13 +360,17 @@ const columns: ColumnDef<Order>[] = [
           <Button
             variant="outline"
             size="sm"
-            onClick={() => table.nextPage()}
+            className="bg-white"
+            onClick={() => {
+              table.nextPage()
+              handlePageChange(+1)
+            }}
             disabled={!table.getCanNextPage()}
           >
             Next
           </Button>
         </div>
-      </div> */}
+      </div>
     </div>
   )
 }
