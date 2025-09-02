@@ -24,3 +24,10 @@ export type GenericPaginator<T> = {
 export type ObjIds = { ObjectId: Array<ObjectId> }
 
 export type ActivateRequest = { user: { email: string, isActive: boolean, sub: string }, body: { otp: string } };
+
+export type OrderFilter = {
+  range?: { 
+      from: Date; 
+      to: Date 
+    }
+}
