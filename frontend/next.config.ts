@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
   compress: true,
   trailingSlash: true,
 
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production'
+  },
+
   async redirects() {
     return [
       {
@@ -12,11 +16,11 @@ const nextConfig: NextConfig = {
         destination: '/auth/login/',
         permanent: true,
       },
-      {
-        source: '/dashboard',
-        destination: '/dashboard/user/',
-        permanent: false,
-      }
+      // {
+      //   source: '/dashboard',
+      //   destination: '/dashboard/client/',
+      //   permanent: false,
+      // }
     ]
   },
   experimental: {}
