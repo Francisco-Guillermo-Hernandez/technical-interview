@@ -44,6 +44,7 @@ export async function verifyToken(token: string): Promise<TokenPayload> {
 
     return payload;
   } catch (error) {
+    console.error(error);
     throw error;
   }
 }

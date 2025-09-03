@@ -12,17 +12,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Plus,
-  Clock,
-  ArrowLeft,
-  Trash2,
-  Package,
-  Search,
-  Download,
-  Menu,
-  X,
-} from 'lucide-react';
 import env from '@/lib/env-config';
 
 import { useEffect } from 'react';
@@ -33,7 +22,6 @@ import { Calendar as CalendarIcon, Mail } from 'lucide-react';
 import { Calendar } from '@/components/ui/calendar';
 import { Spinner, type SpinnerProps } from '@/components/ui/spinner';
 
-import { cn } from '@/lib/utils';
 import {
   Popover,
   PopoverContent,
@@ -353,7 +341,7 @@ export default function CreateOrderPage({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-900 mb-2">
+          <label htmlFor="secondLevel" className="block text-sm font-medium text-gray-900 mb-2">
             Municipio
           </label>
 
@@ -366,6 +354,7 @@ export default function CreateOrderPage({
             }}
             value={formData.secondLevel}
             disabled={!formData.firstLevel}
+            name="secondLevel"
           >
             <SelectTrigger className="py-6 w-full">
               <SelectValue placeholder="Selecciona un municipio" />
@@ -393,6 +382,7 @@ export default function CreateOrderPage({
           </Label>
           <Input
             id="directions"
+            name="directions"
             value={formData.directions}
             required={true}
             onChange={(e) =>

@@ -1,16 +1,15 @@
 import * as React from 'react';
-import { ChevronDownIcon, Calendar as CalendarIcon } from 'lucide-react';
+import { Calendar as CalendarIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { DateRange } from 'react-day-picker';
 
-import { Label } from '@/components/ui/label';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { addDays, differenceInDays, subDays, format } from 'date-fns';
+import { differenceInDays, subDays, format } from 'date-fns';
 import { es } from 'date-fns/locale';
 
 const getLocalizedMonth = (date: Date, locale = es) => format(date, 'MMMM', { locale });
@@ -29,7 +28,7 @@ export type FiltersPageProps = {
 export default function FiltersPage({
   applyFiltersCallBack,
   downloadOrdersCallback,
-}: FiltersPageProps) {
+}: Readonly<FiltersPageProps>) {
   const [open, setOpen] = React.useState(false);
   const [date, setDate] = React.useState<DateRange>({
     from: subDays(new Date(), 7),

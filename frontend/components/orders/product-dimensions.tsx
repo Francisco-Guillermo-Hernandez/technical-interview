@@ -9,6 +9,7 @@ interface DimensionInputsProps {
     width: string;
   }) => void;
   initialDimensions?: {
+    id: string,
     length?: string;
     height?: string;
     width?: string;
@@ -20,6 +21,7 @@ const DimensionInputs: React.FC<DimensionInputsProps> = ({
   initialDimensions 
 }) => {
   const [dimensions, setDimensions] = useState({
+    id: initialDimensions?.id || '',
     length: initialDimensions?.length || '',
     height: initialDimensions?.height || '',
     width: initialDimensions?.width || '',
@@ -28,6 +30,7 @@ const DimensionInputs: React.FC<DimensionInputsProps> = ({
   useEffect(() => {
     if (initialDimensions) {
       setDimensions({
+        id: initialDimensions?.id || '',
         length: initialDimensions.length || '',
         height: initialDimensions.height || '',
         width: initialDimensions.width || '',
@@ -35,11 +38,13 @@ const DimensionInputs: React.FC<DimensionInputsProps> = ({
     }
   }, [initialDimensions]);
 
+
+  const applyIdentifier = (prefix: string, id: string = '1') => `product-dimensions-${prefix}-${id}`;
   const handleInputChange = (
     field: 'length' | 'height' | 'width',
     value: string
   ) => {
-    const numericValue = value.replace(/[^0-9]/g, '');
+    const numericValue = value.replace(/\d/g, '');
 
     const newDimensions = {
       ...dimensions,
@@ -56,7 +61,7 @@ const DimensionInputs: React.FC<DimensionInputsProps> = ({
   return (
     <div className="flex items-center gap-0">
       <div className="flex flex-col items-start w-[87px]">
-        <label className="text-sm font-bold text-foreground mb-1 text-left">
+        <label htmlFor={applyIdentifier('length', dimensions.id) } className="text-sm font-bold text-foreground mb-1 text-left">
           Largo
         </label>
         <div className="flex items-center border-input-border-color rounded-l-lg bg-white p-[14px] border">
@@ -70,13 +75,16 @@ const DimensionInputs: React.FC<DimensionInputsProps> = ({
             pattern="[0-9]*"
             autoComplete='off'
             maxLength={3}
+            name={applyIdentifier('length', dimensions.id)}
+            autoCapitalize="none"
+            spellCheck="false"
           />
           <span className="ml-1 text-xs text-inner-info-labels">cm</span>
         </div>
       </div>
 
       <div className="flex flex-col items-start w-[87px]">
-        <label className="text-sm font-bold text-foreground mb-1 text-left">
+        <label htmlFor={applyIdentifier('height', dimensions.id)} className="text-sm font-bold text-foreground mb-1 text-left">
           Alto
         </label>
         <div className="flex items-center border-input-border-color bg-white p-[14px] border">
@@ -90,13 +98,15 @@ const DimensionInputs: React.FC<DimensionInputsProps> = ({
             pattern="[0-9]*"
             autoComplete='off'
             maxLength={3}
+            id={applyIdentifier('height', dimensions.id)}
+            name={applyIdentifier('height', dimensions.id)}
           />
           <span className="ml-1 text-xs text-inner-info-labels">cm</span>
         </div>
       </div>
 
       <div className="flex flex-col items-start w-[87px]">
-        <label className="text-sm font-bold text-foreground mb-1 text-left">
+        <label htmlFor={applyIdentifier('width', dimensions.id)}  className="text-sm font-bold text-foreground mb-1 text-left">
           Ancho
         </label>
         <div className="flex items-center bg-white border-input-border-color rounded-r-lg p-[14px] border">
@@ -110,6 +120,8 @@ const DimensionInputs: React.FC<DimensionInputsProps> = ({
             pattern="[0-9]*"
             autoComplete='off'
             maxLength={3}
+            name={applyIdentifier('width', dimensions.id)}
+            id={applyIdentifier('width', dimensions.id)}
           />
           <span className="ml-1 text-xs text-inner-info-labels">cm</span>
         </div>

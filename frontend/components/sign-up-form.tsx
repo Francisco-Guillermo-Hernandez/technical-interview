@@ -3,18 +3,17 @@
 import type React from 'react';
 import { useState, FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
+import { Label } from "@/components/ui/label";
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import env from '@/lib/env-config';
 import { Toaster, toast } from 'sonner';
-import { ChevronLeft, Eye, EyeOff, Calendar as C } from 'lucide-react';
+import { ChevronLeft, Eye, EyeOff, Calendar as CalendarIcon, Mail  } from 'lucide-react';
 import { signUpAction } from '@/controllers/auth/sign-up.controller';
 import { useRouter } from 'next/navigation';
 import { User, validateSignUp, type CustomZodError } from '@/lib/validators/sign-up.validator';
 import axios from 'axios';
 import { Calendar } from '@/components/ui/calendar';
-import { Spinner, type SpinnerProps } from '@/components/ui/spinner'
+import { Spinner } from '@/components/ui/spinner'
 
 import {
   Select,
@@ -25,9 +24,7 @@ import {
 } from '@/components/ui/select';
 
 import { format } from 'date-fns';
-import { Calendar as CalendarIcon, Mail } from 'lucide-react';
 
-import { cn } from '@/lib/utils';
 import {
   Popover,
   PopoverContent,
@@ -148,13 +145,12 @@ export function SignUpForm({
             </div>
 
             { currentStatus === 'register' ? ( 
-            <>
             <div className="flex flex-col mt-10 w-full md:w-full xl:max-w-md sm:w-full xs:w-full">
               <div className="grid grid-cols-1 xs:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-900 mb-2">
+                  <Label className="block text-sm font-medium text-gray-900 mb-2">
                     Nombre
-                  </label>
+                  </Label>
                   <Input
                     value={registerData.name}
                     onChange={(e) => updateRegisterData('name', e.target.value)}
@@ -284,12 +280,13 @@ export function SignUpForm({
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-900 mb-2">
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-900 mb-2">
                     Número de whatsapp
                   </label>
                   <div className="flex items-center rounded-[8px] border border-input  h-12 focus-within:ring-2 focus-within:ring-ring">
                     <Select 
                      value={registerData.countryCode}
+                     name='countryCode' 
                     onValueChange={(value) =>
                       updateRegisterData('countryCode', value)
                     }>
@@ -305,6 +302,8 @@ export function SignUpForm({
 
                     <Input
                       type="tel"
+                      name="phone"
+                      id="phone"
                       value={registerData.phone}
                       onChange={(e) =>
                         updateRegisterData('phone', e.target.value)
@@ -321,9 +320,9 @@ export function SignUpForm({
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-900 mb-2">
+                  <Label htmlFor="password" className="block text-sm font-medium text-gray-900 mb-2">
                     Contraseña
-                  </label>
+                  </Label>
                   <div className="relative">
                     <Input
                       type={showPassword ? 'text' : 'password'}
@@ -333,6 +332,8 @@ export function SignUpForm({
                       }
                       placeholder="Digitar contraseña"
                       className="w-full px-3 py-2 pr-10 h-12 bg-white"
+                      id="password"
+                      name="password"
                       required
                     />
                     <button
@@ -356,9 +357,9 @@ export function SignUpForm({
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-900 mb-2">
+                  <Label htmlFor="showRepeatPassword" className="block text-sm font-medium text-gray-900 mb-2">
                     Repetir contraseña
-                  </label>
+                  </Label>
                   <div className="relative">
                     <Input
                       type={showRepeatPassword ? 'text' : 'password'}
@@ -369,6 +370,8 @@ export function SignUpForm({
                       placeholder="Digitar contraseña"
                       className="w-full px-3 py-2 pr-10 h-12 bg-white"
                       required
+                      id="showRepeatPassword"
+                      name="showRepeatPassword"
                     />
                     <button
                       type="button"
@@ -396,17 +399,11 @@ export function SignUpForm({
                 disabled={disabled}
                 className="mt-12 w-full h-12 font-mona-sans font-bold"
               >
-                {isLoading ? (
-                                      <Spinner key="default" variant="default" />
-                                    ) : (
-                                      'Siguente'
-                                    )}
+                { isLoading ? (<Spinner key="default" variant="default" /> ) : ('Siguente') }
               </Button>
             </div>
-            </> 
             ) : (
-            <>
-            <div className=' mt-12'>
+           <div className=' mt-12'>
               <div className='grid grid-cols-1'>
 
                 <div className='flex flex-col items-center'>
@@ -418,12 +415,9 @@ export function SignUpForm({
                   <Mail className='h-28 w-28 text-gray-200 '/>
                 </p>
                 </div>
-
-              
               </div>
-
             </div>
-            </>) }
+          ) }
 
             
           </form>

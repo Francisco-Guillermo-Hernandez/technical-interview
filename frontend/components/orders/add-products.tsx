@@ -8,6 +8,9 @@ import ArrowIcon from '@/public/arrow.svg';
 import DeleteIcon from '@/public/delete.svg';
 import ArrowLeft from '@/public/ArrowLeft.svg';
 
+import { Label } from "@/components/ui/label";
+
+
 import { Button } from '@/components/ui/button';
 import ArrowRightIcon from '@/components/customIcons/arrow.icon';
 import DeleteI from '@/components/customIcons/delete.icon';
@@ -47,11 +50,12 @@ export interface Product {
 
 type TriggerOutputCallback = (products: Product[]) => void;
 type TriggerBack = () => void;
-
-export default function OrderPage({ triggerOutput, triggerBack }: { 
+type OrderPageProps = { 
   triggerOutput?: TriggerOutputCallback; 
   triggerBack: TriggerBack;
-}) {
+}
+
+export default function OrderPage({ triggerOutput, triggerBack }: Readonly<OrderPageProps>) {
   const [open, setOpen] = React.useState(false);
   const [products, setProducts] = React.useState<Array<Product>>([]);
   const [newProduct, setNewProduct] = React.useState({
@@ -125,6 +129,8 @@ export default function OrderPage({ triggerOutput, triggerBack }: {
         Agrega tus productos
       </h2>
 
+
+
       <div className="">
         <div className="p-6 bg-[#F8F9FA] rounded-xl">
           <div className="flex items-center gap-[20px]">
@@ -136,13 +142,14 @@ export default function OrderPage({ triggerOutput, triggerBack }: {
             <ProductDimensions
               onChange={handleDimensionsChange}
               initialDimensions={{
+                id: '1',
                 height: newProduct.height,
                 width: newProduct.width,
                 length: newProduct.length,
               }}
             />
             <div className="flex flex-col ml-[20px] w-[130px]">
-              <label className="text-sm font-bold text-foreground mb-1">
+              <label htmlFor="weight" className="text-sm font-bold text-foreground mb-1">
                 Peso en libras
               </label>
               <input
@@ -152,6 +159,8 @@ export default function OrderPage({ triggerOutput, triggerBack }: {
                 inputMode="numeric"
                 pattern="[0-9]*"
                 autoComplete="off"
+                id="weight"
+                name="weight"
                 maxLength={3}
                 value={newProduct.weight}
                 onChange={(e) =>
@@ -161,7 +170,7 @@ export default function OrderPage({ triggerOutput, triggerBack }: {
             </div>
 
             <div className="flex flex-col ml-[20px] flex-1">
-              <label className="text-sm font-bold text-foreground mb-1">
+              <label htmlFor="content" className="text-sm font-bold text-foreground mb-1">
                 Contenido
               </label>
               <input
@@ -174,6 +183,8 @@ export default function OrderPage({ triggerOutput, triggerBack }: {
                   setNewProduct({ ...newProduct, content: e.target.value })
                   console.log(newProduct);
                 }}
+                id="content"
+                name="content"
               />
             </div>
           </div>
@@ -199,7 +210,8 @@ export default function OrderPage({ triggerOutput, triggerBack }: {
           >
             <div className=" flex justify-between gap-5 ">
               <div className="flex flex-col ml-[20px] w-[130px]">
-                <label className="text-sm font-bold text-foreground mb-1">
+                <label htmlFor={`product-${product.id}-weight`}
+                className="text-sm font-bold text-foreground mb-1">
                   Peso en libras
                 </label>
                 <input
@@ -211,11 +223,14 @@ export default function OrderPage({ triggerOutput, triggerBack }: {
                   pattern="[0-9]*"
                   autoComplete="off"
                   maxLength={3}
+                  id={`product-${product.id}-weight`}
+                  name={`product-${product.id}-weight`}
                  
                 />
               </div>
               <div className="flex flex-col ml-[20px] flex-1">
-                <label className="text-sm font-bold text-foreground mb-1">
+                <label htmlFor={`product-${product.content}-weight`} 
+                className="text-sm font-bold text-foreground mb-1">
                   Contenido
                 </label>
                 <input
@@ -223,6 +238,8 @@ export default function OrderPage({ triggerOutput, triggerBack }: {
                    defaultValue={product.content} 
                   className="w-full h-[48px] px-3 border border-input-border-color rounded-lg bg-white font-medium"
                   placeholder="iPhone 14 pro Max"
+                  id={`product-${product.content}-weight`}
+                  name={`product-${product.content}-weight`}
                 />
               </div>
               <div className="flex items-center justify-center w-[48px] h-[48px] mt-6">
@@ -230,6 +247,7 @@ export default function OrderPage({ triggerOutput, triggerBack }: {
               </div>
               <ProductDimensions
                 initialDimensions={{
+                  id: product.id,
                   height: product.height,
                   width: product.width,
                   length: product.length,

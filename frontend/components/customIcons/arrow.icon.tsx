@@ -1,6 +1,6 @@
 
 
-export default function ArrowRightIcon({ className }: React.ComponentProps<"svg">) {
+export default function ArrowRightIcon({ className }: Readonly<React.ComponentProps<"svg">>) {
   return (
   <svg
     className={className}

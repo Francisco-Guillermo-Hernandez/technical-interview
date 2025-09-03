@@ -6,10 +6,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useState, FormEvent } from 'react';
 import axios from 'axios';
-import { Spinner, type SpinnerProps } from '@/components/ui/spinner';
+import { Spinner } from '@/components/ui/spinner';
 import { Toaster, toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-import { validateLogin, type CustomZodError } from '@/lib/validators/login.validator';
+import {
+  validateLogin,
+  type CustomZodError,
+} from '@/lib/validators/login.validator';
 import {
   loginAction,
   validateOTPAction,
@@ -52,13 +55,13 @@ export function LoginForm({
           console.log(data);
           toast('Bienvenido', { description: `Saludos` });
           if (data.isActive) {
-            
             setIsLoading(false);
             router.push('/dashboard');
           } else {
-            toast('Tu cuenta esta inactiva ', { description: `Si aun no has activado tu cuenta aqui la podras activar.` });
+            toast('Tu cuenta esta inactiva ', {
+              description: `Si aun no has activado tu cuenta aqui la podras activar.`,
+            });
 
-            
             setTimeout(() => {
               setStatus('activate');
             }, 50);
@@ -80,7 +83,6 @@ export function LoginForm({
       console.error('Login error:', error);
       setIsLoading(false);
     } finally {
-     
     }
   };
 
@@ -116,117 +118,110 @@ export function LoginForm({
             onSubmit={handleSubmit}
           >
             {currentStatus === 'login' ? (
-              <>
-                <div className="flex flex-col gap-6 w-full md:w-full xl:max-w-md sm:w-full xs:w-full">
-                  <div className="flex flex-col text-left">
-                    <h1 className="text-2xl font-bold font-mona-sans">
-                      Bienvenido
-                    </h1>
-                    <p className="text-muted-foreground text-balance font-mona-sans mt-3">
-                      Por favor ingresa tus credenciales
+              <div className="flex flex-col gap-6 w-full md:w-full xl:max-w-md sm:w-full xs:w-full">
+                <div className="flex flex-col text-left">
+                  <h1 className="text-2xl font-bold font-mona-sans">
+                    Bienvenido
+                  </h1>
+                  <p className="text-muted-foreground text-balance font-mona-sans mt-3">
+                    Por favor ingresa tus credenciales
+                  </p>
+                </div>
+                <div className="grid gap-3 mt-10">
+                  <Label htmlFor="email">Correo electr&oacute;nico</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className={`h-12 ${errors.email ? 'border-red-500' : ''}`}
+                    placeholder="Digita tu correo"
+                    required
+                  />
+                  {errors.email && (
+                    <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                  )}
+                </div>
+                <div className="grid gap-3">
+                  <div className="flex items-center">
+                    <Label htmlFor="password">Contraseña</Label>
+                  </div>
+                  <Input
+                    id="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Digita tu contraseña"
+                    className={`h-12 ${
+                      errors.password ? 'border-red-500' : ''
+                    }`}
+                    required
+                  />
+                  {errors.password && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.password}
                     </p>
-                  </div>
-                  <div className="grid gap-3 mt-10">
-                    <Label htmlFor="email">Correo electr&oacute;nico</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className={`h-12 ${errors.email ? 'border-red-500' : ''}`}
-                      placeholder="Digita tu correo"
-                      required
-                    />
-                    {errors.email && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.email}
-                      </p>
-                    )}
-                  </div>
-                  <div className="grid gap-3">
-                    <div className="flex items-center">
-                      <Label htmlFor="password">Contraseña</Label>
-                    </div>
-                    <Input
-                      id="password"
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Digita tu contraseña"
-                      className={`h-12 ${
-                        errors.password ? 'border-red-500' : ''
-                      }`}
-                      required
-                    />
-                    {errors.password && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.password}
-                      </p>
-                    )}
-                  </div>
+                  )}
+                </div>
 
-                  <Button
-                    type="submit"
-                    // onClick={() => logIn(email, password)}
-                    // disabled={errors?.email != null || errors.password != null }
-                    className="w-full custom-btn-primary"
+                <Button
+                  type="submit"
+                  // onClick={() => logIn(email, password)}
+                  // disabled={errors?.email != null || errors.password != null }
+                  className="w-full custom-btn-primary"
+                >
+                  {isLoading ? (
+                    <Spinner key="default" variant="default" />
+                  ) : (
+                    'Iniciar sesión'
+                  )}
+                </Button>
+                <div className="text-center text-sm">
+                  Necesitas una cuenta?{' '}
+                  <a href="/auth/sign-up"
+                    className="hover:underline hover:underline-offset-4 font-bold font-mona-sans"
                   >
-                    {isLoading ? (
-                      <Spinner key="default" variant="default" />
-                    ) : (
-                      'Iniciar sesión'
-                    )}
-                  </Button>
-                  <div className="text-center text-sm">
-                    Necesitas una cuenta? &nbsp;
-                    <a
-                      href="/auth/sign-up"
-                      className="hover:underline hover:underline-offset-4 font-bold font-mona-sans"
-                    >
-                      Reg&iacute;strate aqu&iacute;
-                    </a>
-                  </div>
+                    Reg&iacute;strate aqu&iacute;
+                  </a>
                 </div>
-              </>
+              </div>
             ) : (
-              <>
-                <div className="flex flex-col gap-6 w-full md:w-full xl:max-w-md sm:w-full xs:w-full">
-                  <div className="flex flex-col text-left">
-                    <h1 className="text-2xl font-bold font-mona-sans">
-                      Activación de la cuenta
-                    </h1>
-                    <p className="text-muted-foreground text-balance font-mona-sans mt-3">
-                      Por favor ingresa el codigo OTP
-                    </p>
-                  </div>
-                  <div className="mt-12">
-                    <label className="block text-sm font-medium text-gray-700 mb-4">
-                      OTP
-                    </label>
-                    <InputOTP
-                      maxLength={6}
-                      pattern={REGEXP_ONLY_DIGITS}
-                      onComplete={handleOTP}
-                    >
-                      <InputOTPGroup>
-                        <InputOTPSlot index={0} />
-                        <InputOTPSlot index={1} />
-                        <InputOTPSlot index={2} />
-                      </InputOTPGroup>
-                      <InputOTPSeparator />
-                      <InputOTPGroup>
-                        <InputOTPSlot index={3} />
-                        <InputOTPSlot index={4} />
-                        <InputOTPSlot index={5} />
-                      </InputOTPGroup>
-                    </InputOTP>
-
-                    <small className="mt-4 text-gray-700">
-                      Revisa tu correo para obtener el código
-                    </small>
-                  </div>
+              <div className="flex flex-col gap-6 w-full md:w-full xl:max-w-md sm:w-full xs:w-full">
+                <div className="flex flex-col text-left">
+                  <h1 className="text-2xl font-bold font-mona-sans">
+                    Activación de la cuenta
+                  </h1>
+                  <p className="text-muted-foreground text-balance font-mona-sans mt-3">
+                    Por favor ingresa el codigo OTP
+                  </p>
                 </div>
-              </>
+                <div className="mt-12">
+                  <label className="block text-sm font-medium text-gray-700 mb-4">
+                    OTP
+                  </label>
+                  <InputOTP
+                    maxLength={6}
+                    pattern={REGEXP_ONLY_DIGITS}
+                    onComplete={handleOTP}
+                  >
+                    <InputOTPGroup>
+                      <InputOTPSlot index={0} />
+                      <InputOTPSlot index={1} />
+                      <InputOTPSlot index={2} />
+                    </InputOTPGroup>
+                    <InputOTPSeparator />
+                    <InputOTPGroup>
+                      <InputOTPSlot index={3} />
+                      <InputOTPSlot index={4} />
+                      <InputOTPSlot index={5} />
+                    </InputOTPGroup>
+                  </InputOTP>
+
+                  <small className="mt-4 text-gray-700">
+                    Revisa tu correo para obtener el código
+                  </small>
+                </div>
+              </div>
             )}
           </form>
           <div className="bg-[#EDEDED] relative hidden md:block"></div>

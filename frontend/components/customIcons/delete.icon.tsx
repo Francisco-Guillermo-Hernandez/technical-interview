@@ -1,4 +1,4 @@
-export default function DeleteIcon({ className }: React.ComponentProps<'svg'>) {
+export default function DeleteIcon({ className }: Readonly<React.ComponentProps<'svg'>>) {
   return (
     <svg
       className={className}

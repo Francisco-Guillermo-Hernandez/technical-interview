@@ -13,12 +13,12 @@ import {
   useReactTable,
   VisibilityState,
 } from "@tanstack/react-table"
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
-import { Badge } from "@/components/ui/badge"
+import { MoreHorizontal } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -27,8 +27,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/dropdown-menu";
 import {
   Table,
   TableBody,
@@ -41,13 +40,10 @@ import {
 import env from '@/lib/env-config';
 
 import { type DeliveryRequest } from '@/components/orders/create-order';
-import { type Product } from '@/components/orders/add-products';
 
 import axios from 'axios';
 import useDownloadOrders from '@/hooks/download-report';
 import FiltersPage, { type Filter } from '@/app/dashboard/client/history/filters';
-import { DateRange } from 'react-day-picker'
-import { PaginationState, OnChangeFn } from '@tanstack/react-table';
 import { format } from 'date-fns';
 
 type Package = {
@@ -83,7 +79,7 @@ type PaginatorRequest = {
 
 const formatDate = (date: Date) => format(date, 'yyyy-MM-dd');
 
-export default function HistoryPage({ token }: { token: string }) {
+export default function HistoryPage({ token }: Readonly<{ token: string }>) {
 
   const [orders, setOrders] = React.useState<OrderPaginator>();
   const [loading, setLoading] = React.useState<boolean>(true);
@@ -214,8 +210,6 @@ const columns: ColumnDef<Order>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -275,17 +269,6 @@ const columns: ColumnDef<Order>[] = [
 
   return (
     <div className="w-full">
-      {/* <div className="flex items-center py-4">
-        <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-        
-      </div> */}
       <FiltersPage 
       downloadOrdersCallback={downloadReport} 
       applyFiltersCallBack={applyFilters} />
