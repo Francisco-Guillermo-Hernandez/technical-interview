@@ -210,3 +210,4 @@ Se usa AWS para desplegar el proyecto, para ello se usan los siguientes servicio
 | ![7.png](screenshots/7.png) | Se envia la orden al servidor |
 | ![8.png](screenshots/8.png) | Historial de envios |
 | ![9.png](screenshots/9.png) | Activacion de la cuenta |
+| ![10.png](screenshots/10.png) | Se agregó filtro por fecha para buscar envios previos y un boton para descargar un reporte de los envios en formato XLSX |
